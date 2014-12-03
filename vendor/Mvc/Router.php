@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Roteador. Respons�vel por incluir o controlador e executar o seu respectivo m�todo informado
+ * Roteador. Responsável por incluir o controlador e executar o seu respectivo método informado
  *
  * @author Gabriel Malaquias
  * @access public
@@ -16,7 +16,7 @@ namespace Mvc;
 class Router
 {
     /**
-     * Método responsável por obter o nome do controlador e do m�todo e executá-los.
+     * Método responsável por obter o nome do controlador e do método e executá-los.
      * @access public
      * @return void
      */

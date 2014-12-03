@@ -13,9 +13,7 @@ use Mvc\Controller;
 class TesteController extends Controller{
 
     public function Index(){
-
         $this->View();
-
     }
 
 

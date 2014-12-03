@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Classe para trabalhar com dados de sess�o
+ * Classe para trabalhar com dados de sessão
  *
- * @author TreinaWeb
+ * @author Gabriel Malaquias
  * @access public
  */
 
@@ -12,7 +12,7 @@ namespace Helpers;
 class Session{
 
     /**
-     * Inicializa a sess�o
+     * Inicializa a sessão
      * @access public
      * @return void
      */
@@ -25,7 +25,7 @@ class Session{
     }
 
     /**
-     * Grava uma informa��o na sess�o
+     * Grava uma informação na sessão
      * @access public
      * @param String $key
      * @param String $value
@@ -37,7 +37,7 @@ class Session{
     }
 
     /**
-     * Retorna um dado da sess�o
+     * Retorna um dado da sessão
      * @access public
      * @param String $key
      * @return String
@@ -51,7 +51,7 @@ class Session{
     }
 
     /**
-     * Deleta um dado da sess�o
+     * Deleta um dado da sessão
      * @access public
      * @param String $key
      * @return void
@@ -62,7 +62,7 @@ class Session{
     }
 
     /**
-     * Destr�i todos os dados da sess�o
+     * Destrói todos os dados da sessão
      * @access public
      * @return void
      */
