@@ -3,7 +3,7 @@
 /**
  * Classe para trabalhar com banco de dados usando PDO.
  *
- * @author TreinaWeb
+ * @author Gabriel Malaquias
  * @access public
  */
 namespace Mvc;
@@ -13,7 +13,7 @@ use \PDO;
 class Database extends PDO
 {
     /**
-     * Inicializa a conex�o com o banco de dados
+     * Inicializa a conexão com o banco de dados
      * @access public
      * @return void
      */
@@ -32,16 +32,6 @@ class Database extends PDO
             echo $e->getMessage();
         }
     }
-
-    /**
-     * Select no banco de dados.
-     * @access public
-     * @param String $sql Comando SQL.
-     * @param Array $array Dados a serem retornados.
-     * @param Boolean $all Usar fetchAll() ou apenas fetch()
-     * @param Constant $fetchMode Define o tipo do retorno, por padr�o, um array associativo.
-     * @return Array
-     */
 
     public function select($sql, $class = "", $all = FALSE, $array = array())
     {
@@ -94,13 +84,6 @@ class Database extends PDO
         return $class;
     }
 
-    /**
-     * Insere um dado no banco de dados.
-     * @access public
-     * @param String $table Nome da tabela.
-     * @param Array $data Campos e seus respectivos valores.
-     * @return Integer
-     */
 
     public function insert($table, $data)
     {
@@ -134,15 +117,6 @@ class Database extends PDO
         // Retorna o ID desse item inserido
         return $this->lastInsertId();
     }
-
-    /**
-     * Atualiza um dado no banco de dados.
-     * @access public
-     * @param String $table Nome da tabela.
-     * @param Array $data Campos e seus respectivos valores.
-     * @param String $where Condi��o de atualiza��o.
-     * @return Integer
-     */
 
     public function update($table, $data, $where)
     {
@@ -178,14 +152,6 @@ class Database extends PDO
         return $sth->execute();
     }
 
-    /**
-     * Deleta um dado da tabela.
-     * @access public
-     * @param String $table Nome da tabela.
-     * @param String $where Condi��o de atualiza��o.
-     * @param Integer $limit Limite de itens deletados por execu��o.
-     * @return Integer
-     */
 
     public function delete($table, $where, $limit = 1)
     {
