@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Modelo base para os modelos da aplica��o.
+ * Modelo base para os modelos da aplicação.
  *
- * @author TreinaWeb
+ * @author Gabriel Malaquias
  * @access public
  */
 namespace Mvc;
