@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-0": {
+            "Mvc\\": "vendor",
+            "Controllers\\" : "Application",
+            "Areas\\": "Application",
+            "Models": "Application"
+        }
+    }
+}
