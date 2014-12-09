@@ -4,7 +4,8 @@
             "Mvc\\": "vendor",
             "Controllers\\" : "Application",
             "Areas\\": "Application",
-            "Models": "Application"
+            "Models": "Application",
+            "Helpers": "vendor"
         }
     }
 }

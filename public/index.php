@@ -14,12 +14,14 @@ require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPAR
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.php';
 
 
+header('Content-Type: text/html; charset=utf-8');
+
 try {
 
     $a = new \Mvc\Router();
     $a->run();
-
 }catch (\Exception $e){
+
     echo $e->getMessage();
 }
 

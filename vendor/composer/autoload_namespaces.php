@@ -7,7 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Mvc\\' => array($vendorDir),
+    'Models' => array($baseDir . '/Application'),
+    'Helpers' => array($vendorDir),
     'Controllers\\' => array($baseDir . '/Application'),
     'Areas\\' => array($baseDir . '/Application'),
-    'Models\\' => array($baseDir . '/Application'),
 );

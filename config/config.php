@@ -50,6 +50,34 @@ define('DB_PASS', '');
 
 
 /**
+ * Email definitions
+ */
+define("HOST_EMAIL","");
+define("USER_EMAIL","");
+define("PASS_EMAIL","");
+
+
+/**
  * PREFIX PARA ADICIONAR NA ACTION QUANDO EXISTE POST NA TELA
  */
 define("PREFIX_POST", "_post");
+
+
+/**
+ * Error
+ */
+register_shutdown_function( "error_treatment" );
+
+error_reporting(0);
+
+function error_treatment() {
+    $error = error_get_last();
+    if( $error !== NULL) {
+        $errno   = $error["type"];
+        $errfile = $error["file"];
+        $errline = $error["line"];
+        $errstr  = $error["message"];
+
+        var_dump($error);
+    }
+}
