@@ -35,13 +35,15 @@ class Annotation {
      * @type: string
      * @description: regex used to read the code blocks
      */
-    private $_regex = "/@(.*):(.*);/mi";
+    private $_regex = "/@(.*):(.*)([;\\n\\r])/mi";
 
     /**
      * @type: array
      * @description: receives type annotations
      */
-    private $_attributes = array("Required" => "true");
+    private $_attributes = array("Required" => "true",
+                                 "NotMapped" => "true"
+                            );
 
     /**
      * @param: $class Class
@@ -74,14 +76,13 @@ class Annotation {
         $method = new \ReflectionProperty($this->_class, $attr);
 
         preg_match_all($this->_regex, $method->getDocComment(),$out, PREG_SET_ORDER);
-
+    var_dump($out);
         if(is_array($out)) :
             $count = count($out);
             $this->_annotations[$attr] = array();
 
             for ($i = 0; $i < $count; ++$i):
                 $annotation = ucfirst($out[$i][1]);
-
                 if(array_key_exists($annotation, $this->_attributes))
                     $this->_annotations[$attr][$annotation] = trim($out[$i][2]);
 
