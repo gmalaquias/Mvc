@@ -35,14 +35,17 @@ class Annotation {
      * @type: string
      * @description: regex used to read the code blocks
      */
-    private $_regex = "/@(.*):(.*)([;\\n\\r])/mi";
+    private $_regex = "/@(.*):(.*)|@(.*)/mi";
 
     /**
      * @type: array
      * @description: receives type annotations
      */
-    private $_attributes = array("Required" => "true",
-                                 "NotMapped" => "true"
+    private $_attributes = array("Required" => array(),
+                                 "NotMapped" => array(),
+                                 "Range" => array(),
+                                 "Email" => array(),
+                                 "Val" => array()
                             );
 
     /**
@@ -55,6 +58,7 @@ class Annotation {
         $this->_reflection = new \ReflectionClass($this->_class);
 
         $this->getAllAnnotations();
+
         var_dump($this->_annotations);
     }
 
@@ -76,18 +80,28 @@ class Annotation {
         $method = new \ReflectionProperty($this->_class, $attr);
 
         preg_match_all($this->_regex, $method->getDocComment(),$out, PREG_SET_ORDER);
-    var_dump($out);
+        #var_dump($out);
         if(is_array($out)) :
             $count = count($out);
+
             $this->_annotations[$attr] = array();
 
             for ($i = 0; $i < $count; ++$i):
-                $annotation = ucfirst($out[$i][1]);
-                if(array_key_exists($annotation, $this->_attributes))
-                    $this->_annotations[$attr][$annotation] = trim($out[$i][2]);
+
+                $this->setAnnotation($out[$i], $attr);
 
             endfor;
         endif;
+    }
+
+    private function setAnnotation($array, $attr){
+        if($array[1] == '')
+            $annotation = ucfirst($array[3]);
+        else
+            $annotation = ucfirst($array[1]);
+
+        if(array_key_exists($annotation, $this->_attributes))
+            $this->_annotations[$attr][$annotation] = trim($array[2] == '' ? 'true' : str_replace(";","",$array[2]));
     }
 
     /**
