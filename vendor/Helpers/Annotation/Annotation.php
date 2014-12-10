@@ -44,8 +44,7 @@ class Annotation {
     private $_attributes = array("Required" => array(),
                                  "NotMapped" => array(),
                                  "Range" => array(),
-                                 "Email" => array(),
-                                 "Val" => array()
+                                 "Email" => array()
                             );
 
     /**
@@ -87,21 +86,18 @@ class Annotation {
             $this->_annotations[$attr] = array();
 
             for ($i = 0; $i < $count; ++$i):
-
                 $this->setAnnotation($out[$i], $attr);
-
             endfor;
         endif;
     }
 
     private function setAnnotation($array, $attr){
         if($array[1] == '')
-            $annotation = ucfirst($array[3]);
+            $annotation = ucfirst(trim(preg_replace('/\s\s+/', '', $array[3])));
         else
-            $annotation = ucfirst($array[1]);
-
+            $annotation = ucfirst(trim(preg_replace('/\s\s+/', '', $array[1])));
         if(array_key_exists($annotation, $this->_attributes))
-            $this->_annotations[$attr][$annotation] = trim($array[2] == '' ? 'true' : str_replace(";","",$array[2]));
+            $this->_annotations[$attr][$annotation] = trim($array[2] == '' ? 'true' : str_replace(";", "", $array[2]));
     }
 
     /**

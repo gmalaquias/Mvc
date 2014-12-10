@@ -11,13 +11,7 @@ namespace Controllers;
 use Mvc\Controller;
 
 class IndexController extends Controller{
-
     public function Index(){
-        throw new \Exception('ad');
-    }
-    
-    public function Teste(){
-        $this->Model();
-    }
 
+    }
 } 
