@@ -57,8 +57,6 @@ class Annotation {
         $this->_reflection = new \ReflectionClass($this->_class);
 
         $this->getAllAnnotations();
-
-        var_dump($this->_annotations);
     }
 
     /**
