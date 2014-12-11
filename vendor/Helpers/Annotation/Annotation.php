@@ -44,7 +44,9 @@ class Annotation {
     private $_attributes = array("Required" => array(),
                                  "NotMapped" => array(),
                                  "Range" => array(),
-                                 "Email" => array()
+                                 "Email" => array(),
+                                 "Date" =>  array(),
+        "DateTime" => array()
                             );
 
     /**
@@ -77,7 +79,7 @@ class Annotation {
         $method = new \ReflectionProperty($this->_class, $attr);
 
         preg_match_all($this->_regex, $method->getDocComment(),$out, PREG_SET_ORDER);
-        #var_dump($out);
+        #var_dump($this->_attributes);
         if(is_array($out)) :
             $count = count($out);
 
@@ -89,11 +91,16 @@ class Annotation {
         endif;
     }
 
-    private function setAnnotation($array, $attr){
+    /**
+    * @param array $array
+    * @param $attr
+     */
+    private function setAnnotation(array $array, $attr){
         if($array[1] == '')
             $annotation = ucfirst(trim(preg_replace('/\s\s+/', '', $array[3])));
         else
             $annotation = ucfirst(trim(preg_replace('/\s\s+/', '', $array[1])));
+        #var_dump($annotation);
         if(array_key_exists($annotation, $this->_attributes))
             $this->_annotations[$attr][$annotation] = trim($array[2] == '' ? 'true' : str_replace(";", "", $array[2]));
     }
