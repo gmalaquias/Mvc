@@ -104,6 +104,6 @@ class Router
      */
     protected static function error($msg)
     {
-        throw new \Exception($msg);
+        throw new MvcException($msg);
     }
 }

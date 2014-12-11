@@ -43,4 +43,11 @@ class ModelState {
         endforeach;
     }
 
+    public static function TryValidationModel($model){
+        $annotation = new Annotation($model);
+        $get = $annotation->getAnnotations();
+
+
+    }
+
 } 

@@ -17,11 +17,9 @@ require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPAR
 header('Content-Type: text/html; charset=utf-8');
 
 try {
-
     $a = new \Mvc\Router();
     $a->run();
 }catch (\Exception $e){
-
     echo $e->getMessage();
 }
 

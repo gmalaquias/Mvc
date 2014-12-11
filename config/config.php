@@ -27,9 +27,6 @@ define('PATH_CONTROLLER', ROOT . FOLDER_SRC . DS . 'Controllers' . DS);
 define('PATH_VIEWS', ROOT . FOLDER_SRC . DS . 'Views' . DS);
 define('PATH_MODELS', ROOT . FOLDER_SRC . DS . 'Models' . DS);
 define('PATH_AREA', ROOT . FOLDER_SRC . DS . 'Areas' . DS);
-
-
-
 define('NAMESPACE_CONTROLLER', 'Controllers');
 define('NAMESPACE_MODELS', 'Models');
 define('NAMESPACE_AREAS', 'Areas');
