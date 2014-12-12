@@ -21,24 +21,20 @@ class Request
      */
     public static function run()
     {
-        // Algum controlador foi informado na URL? se n�o foi, mant�m que o controlador � o 'index'.
         if( !isset($_GET["url"]) ) return false;
 
-        // Explode os segmentos da URL e os armazena em um Array
         $segmentos = explode('/',$_GET["url"]);
-        // Se o controlador foi realmente definido, retorna o nome dele.
+
         self::$_controller = (($c = array_shift($segmentos)) ? $c : 'Index') . 'Controller';
-        // Se um m�todo foi realmente requisitado, retorna o nome dele.
+
         self::$_action = ($m = array_shift($segmentos)) ? $m : 'Index';
 
-        // Se argumentos adicionais foram definidos, os retorna em Array.
         self::$_args = (count($segmentos) > 0) ? $segmentos : array();
     }
 
     public static function InverseArea(){
         if( !isset($_GET["url"]) ) return false;
-
-        // Explode os segmentos da URL e os armazena em um Array
+        
         $segmentos = explode('/',$_GET["url"]);
 
         self::$_area = ($m = array_shift($segmentos)) ? $m : 'Index';
@@ -69,6 +65,4 @@ class Request
     public static function getCompleteController(){
         return self::$_controller;
     }
-    
-
 }
