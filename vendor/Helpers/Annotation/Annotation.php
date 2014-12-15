@@ -121,11 +121,30 @@ class Annotation {
         throw new AnnotationException("AnnotationError: Esta classe não existe.", 1);
     }
 
+    /**
+    * @return array
+    */
     public function getAnnotations(){
         return $this->_annotations;
     }
 
+
+    /**
+    * @return array
+    */
     public function getAttributes(){
         return $this->_attributes;
+    }
+
+    /**
+    * @param $attr
+    * @return null
+    */
+    public function getAnnotationsByAttribute($attr){
+        $annotations = $this->getAnnotations();
+        if(isset($annotations[$attr]))
+            return $annotations[$attr];
+
+        return null;
     }
 } 
