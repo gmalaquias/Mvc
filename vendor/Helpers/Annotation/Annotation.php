@@ -12,6 +12,8 @@ namespace Helpers\Annotation;
  * Class Annotation
  * @package Helpers\Annotation
  */
+
+
 class Annotation {
 
     /**
@@ -41,13 +43,30 @@ class Annotation {
      * @type: array
      * @description: receives type annotations
      */
-    private $_attributes = array("Required" => array(),
-                                 "NotMapped" => array(),
-                                 "Range" => array(),
-                                 "Email" => array(),
-                                 "Date" =>  array(),
-        "DateTime" => array()
-                            );
+    private $_attributes = array(
+
+
+        "Required" => array(),
+
+
+        "NotMapped" => array(),
+
+
+        "Range" => array(),
+
+
+        "Email" => array(),
+
+
+        "Date" =>  array(),
+
+
+        "DateTime" => array(),
+
+
+        "DisplayName" => array()
+
+    );
 
     /**
      * @param: $class Class
@@ -145,6 +164,7 @@ class Annotation {
         if(isset($annotations[$attr]))
             return $annotations[$attr];
 
-        return null;
+        throw new AnnotationException("AnnotationError: field not found", 2);
     }
-} 
+}
+
