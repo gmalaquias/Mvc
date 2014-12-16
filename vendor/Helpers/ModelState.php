@@ -8,11 +8,11 @@
 namespace Helpers;
 
 use Helpers\Annotation\Annotation;
+use Helpers\Annotation\Validators\Attributes;
 
 class ModelState {
 
     public static $errors = array();
-
 
     public static function addError($erro){
         array_push(self::$errors, $erro);
@@ -59,8 +59,16 @@ class ModelState {
     }
 
     public static function TryValidationModel($model){
-        $annotation = new Annotation($model);
-        $get = $annotation->getAnnotations();
+        $classAnnotations = new Annotation($model);
+        $attributes = $classAnnotations->getAttributes();
+        $annotation = $classAnnotations->getAnnotations();
+
+        foreach($annotation as $campo => $options):
+            foreach($options as $attr => $valor):
+                if(!array_key_exists("getFunction", $attributes[$attr]) || $attributes[$attr]["getFunction"] == true)
+                    $parameter = new Attributes($classAnnotations->getName($campo), $model->$campo, $attr,$valor,$attributes[$attr]);
+            endforeach;
+        endforeach;
     }
 
 } 

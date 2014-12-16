@@ -7,6 +7,8 @@
  */
 
 namespace Helpers\Annotation;
+use Helpers\Annotation\Validators\Attributes;
+use Helpers\ModelState;
 
 /**
  * Class Annotation
@@ -49,7 +51,7 @@ class Annotation {
         "Required" => array(),
 
 
-        "NotMapped" => array(),
+        "NotMapped" => array("getFunction" => false),
 
 
         "Range" => array(),
@@ -64,7 +66,7 @@ class Annotation {
         "DateTime" => array(),
 
 
-        "DisplayName" => array()
+        "DisplayName" => array("getFunction" => false)
 
     );
 
@@ -166,5 +168,13 @@ class Annotation {
 
         throw new AnnotationException("AnnotationError: field not found", 2);
     }
+
+    public function getName($campo){
+        if(array_key_exists("DisplayName", $this->_annotations[$campo]))
+            return $this->_annotations[$campo]["DisplayName"];
+
+        return $campo;
+    }
+
 }
 
