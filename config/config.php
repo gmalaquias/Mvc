@@ -67,17 +67,19 @@ define("PREFIX_POST", "_post");
 /**
  * Error
  */
-register_shutdown_function( "error_treatment" );
+register_shutdown_function( "error_tratamento" );
 
 error_reporting(0);
 
-function error_treatment() {
+function error_tratamento() {
     $error = error_get_last();
     if( $error !== NULL) {
         $errno   = $error["type"];
         $errfile = $error["file"];
         $errline = $error["line"];
         $errstr  = $error["message"];
+
+
 
         var_dump($error);
     }
