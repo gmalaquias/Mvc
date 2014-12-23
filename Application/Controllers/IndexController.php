@@ -17,6 +17,7 @@ class IndexController extends Controller{
      * Post Exemplo
      */
     public function Index_post($model){
+        echo "method post";
         $this->View(null,$model);
     }
 }
