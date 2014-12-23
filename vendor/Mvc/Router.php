@@ -108,7 +108,7 @@ class Router
      * @param $msg
      * @throws \Exception
      */
-    protected static function error($msg)
+    private static function error($msg)
     {
         throw new MvcException($msg);
     }
@@ -118,7 +118,7 @@ class Router
     * Caso exista algum post na pagina, ele é tranformado em um objeto $model
     * e colocado como o primeiro argumento para receber no metodo do controller
     */
-    public static function  getPost(&$args){
+    private static function  getPost(&$args){
         if(isset($_POST) and count($_POST) > 0){
             $post = $_POST;
             $classe = 'stdClass'; //TODO: Pegar classe dinamica
