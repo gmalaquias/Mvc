@@ -64,6 +64,8 @@ class Router
             }
         }
 
+        self::getPost($args);
+
         call_user_func_array(array($controlador, $action.$post), $args);
 
 
@@ -105,5 +107,36 @@ class Router
     protected static function error($msg)
     {
         throw new MvcException($msg);
+    }
+
+
+    /**
+    * Caso exista algum post na pagina, ele é tranformado em um objeto $model
+    * e colocado como o primeiro argumento para receber no metodo do controller
+    */
+    public static function  getPost(&$args){
+        if(isset($_POST) and count($_POST) > 0){
+            $post = $_POST;
+            $classe = 'stdClass'; //TODO: Pegar classe dinamica
+            $model = new $classe();
+
+            foreach($post as $key => $valor):
+
+                $ex = explode("_", $key);
+                $count = count($ex);
+                $result = '$model->';
+
+                for($i =0; $i < $count; $i++)
+                    $result .= '$ex[' . $i . ']' . ($i == $count - 1 ? '= $valor;' : '->');
+
+
+                eval($result);
+
+            endforeach;
+
+            $args = array_merge(array("model" => $model),$args);
+        }
+
+        return $args;
     }
 }
