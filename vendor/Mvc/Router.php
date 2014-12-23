@@ -20,7 +20,6 @@ class Router
      * @access public
      * @return void
      */
-
     public static function run()
     {
         //pega o controller na URL
@@ -86,10 +85,15 @@ class Router
      */
     public static function VerificaMetodo($controller, $action)
     {
-        $addPost = "";
-        if (isset($_POST) and count($_POST) > 0)
-            $addPost = PREFIX_POST;
+        if (!isset($_POST) OR count($_POST) == 0) {
+            if (!method_exists($controller, $action)) {
+                self::error("Erro");
+            }
 
+            return "";
+        }
+
+        $addPost = PREFIX_POST;
         if(!method_exists($controller, $action.$addPost)) {
             $addPost = "";
             if (!method_exists($controller, $action)) {
