@@ -8,7 +8,7 @@
  */
 namespace Mvc;
 
-class Model
+abstract class Model
 {    
     function __construct()
     {

@@ -12,7 +12,7 @@ namespace Mvc;
  * Class Controller
  * @package Mvc
  */
-class Controller
+abstract class Controller
 {
     /**
      * @param null $folder
