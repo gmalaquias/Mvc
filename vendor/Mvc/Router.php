@@ -90,12 +90,12 @@ class Router
                 self::error("Erro");
             }
 
-            return "";
+            return null;
         }
 
         $addPost = PREFIX_POST;
         if(!method_exists($controller, $action.$addPost)) {
-            $addPost = "";
+            $addPost = null;
             if (!method_exists($controller, $action)) {
                 self::error("Erro");
             }
