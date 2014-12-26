@@ -158,4 +158,8 @@ class Database extends PDO
         // Deleta
         return $this->exec("DELETE FROM $table WHERE $where LIMIT $limit");
     }
+
+    public function __destruct(){
+        unset($this);
+    }
 }
