@@ -11,7 +11,5 @@ namespace Models;
 use Mvc\Model;
 
 class Index extends Model{
-    public function teste(){
-        
-    }
+
 } 
