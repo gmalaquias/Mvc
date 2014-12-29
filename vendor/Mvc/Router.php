@@ -26,7 +26,7 @@ class Router
     {
         //pega o controller na URL
         Request::run();
-        Session::inicializar();
+        Session::start();
 
         $controller = Request::getCompleteController();
 

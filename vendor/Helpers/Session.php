@@ -17,7 +17,7 @@ class Session{
      * @return void
      */
 
-    public static function inicializar(){
+    public static function start(){
         if(!isset($_SESSION)){
             session_start();
             session_regenerate_id();
