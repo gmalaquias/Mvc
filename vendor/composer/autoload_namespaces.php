@@ -9,6 +9,7 @@ return array(
     'Mvc\\' => array($vendorDir),
     'Models' => array($baseDir . '/Application'),
     'Helpers' => array($vendorDir),
+    'Entities' => array($vendorDir),
     'Controllers\\' => array($baseDir . '/Application'),
     'Areas\\' => array($baseDir . '/Application'),
 );

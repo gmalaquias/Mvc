@@ -5,7 +5,8 @@
             "Controllers\\" : "Application",
             "Areas\\": "Application",
             "Models": "Application",
-            "Helpers": "vendor"
+            "Helpers": "vendor",
+            "Entities": "vendor"
         }
     }
 }

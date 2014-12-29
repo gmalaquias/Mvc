@@ -8,7 +8,9 @@ use Mvc\Controller;
 class MegaSenaController extends Controller{
 
     public function Index(){
-        $this->View();
+
+        $model = new \stdClass();
+        $this->View(null,$model);
     }
 
     public function getHtml(){
