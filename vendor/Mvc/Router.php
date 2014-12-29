@@ -8,6 +8,8 @@
  */
 
 namespace Mvc;
+use Helpers\ModelState;
+use Helpers\Session;
 
 /**
  * Class Router
@@ -24,6 +26,7 @@ class Router
     {
         //pega o controller na URL
         Request::run();
+        Session::inicializar();
 
         $controller = Request::getCompleteController();
 
@@ -121,7 +124,8 @@ class Router
     private static function  getPost(&$args){
         if(isset($_POST) and count($_POST) > 0){
             $post = $_POST;
-            $classe = 'stdClass'; //TODO: Pegar classe dinamica
+            $classe = Controller::getTypeModel();
+
             $model = new $classe();
 
             foreach($post as $key => $valor):
@@ -137,6 +141,8 @@ class Router
                 eval($result);
 
             endforeach;
+
+            ModelState::TryValidationModel($model);
 
             $args = array_merge(array("model" => $model),$args);
         }

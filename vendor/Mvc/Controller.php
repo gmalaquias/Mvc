@@ -7,13 +7,21 @@
  */
 
 namespace Mvc;
+use Helpers\Session;
 
 /**
  * Class Controller
  * @package Mvc
  */
-abstract class Controller
+class Controller
 {
+    /**
+     *
+     */
+    public function __construct(){
+
+    }
+
     /**
      * @param null $folder
      * @param null $model
@@ -22,10 +30,10 @@ abstract class Controller
     public function View($folder = null, $model = null)
     {
         $file = $this->getAddressView($folder);
+        $this->GenerateModel($model);
         if (file_exists($file))
             require_once $file;
     }
-
 
     /**
      *
@@ -37,6 +45,22 @@ abstract class Controller
             $model = $this->getClassModel();
             $this->model = new $model();
         }
+    }
+
+    /**
+     *
+     */
+    private function generateModel($model){
+        if(is_object($model))
+            Session::set(md5(Request::getArea().Request::getController().Request::getAction()), get_class($model));
+    }
+
+    public static function getTypeModel(){
+        $type = Session::get(md5(Request::getArea().Request::getController().Request::getAction()));
+        if($type == null)
+            return 'stdClass';
+
+        return $type;
     }
 
     /**
