@@ -21,7 +21,8 @@ define('STATIC_URL', URL . 'site/util');
 define('IMG_URL',URL.'util/img');
 
 define('FOLDER_SRC','Application');
-define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
+define('ROOT', dirname(__DIR__) . DS);
+define('VENDOR', ROOT . 'vendor' . DS);
 define('HELPERS_PATH', ROOT . DS . "vendor" . DS . "Helpers" . DS);
 define('VALIDATORS_PATH', HELPERS_PATH . "Annotation" . DS . "Validators" . DS);
 define('PATH_CONTROLLER', ROOT . FOLDER_SRC . DS . 'Controllers' . DS);
