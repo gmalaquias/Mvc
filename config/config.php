@@ -6,6 +6,8 @@
  * Time: 01:48
  */
 
+date_default_timezone_set('America/Sao_Paulo');
+
 /**
  * DEFINIÇÃO DE CONSTANTES PARA URL
  */
