@@ -17,7 +17,7 @@ class MegaSenaController extends Controller{
         ini_set('max_execution_time', 0);
 
         $doc = new \DOMDocument();
-        $doc->loadHTMLFile(PATH_VIEWS . 'Index' . DS . 'Index.php');
+        $doc->loadHTMLFile(PATH_VIEWS . 'MegaSena' . DS . 'Index.php');
         $a = $doc->saveHTML();
 
         $html = new \simple_html_dom();
