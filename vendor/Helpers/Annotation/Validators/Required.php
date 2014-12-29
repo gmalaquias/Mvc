@@ -10,11 +10,12 @@ namespace Helpers\Annotation\Validators;
 
 
 use Helpers\ModelState;
+use Helpers\Validation;
 
 abstract class Required implements iValidator {
 
     public static function isValid(Attributes $object){
-        if(empty($object->_value))
+        if(!Validation::Required($object->_value))
             ModelState::addError("O campo " . $object->_name . " é obrigatório.");
     }
 
