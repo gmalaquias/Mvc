@@ -1,6 +1,7 @@
 <?php
 namespace Controllers;
 
+use ClassGenerator\ClassGenerator;
 use Entities\Pessoa;
 use Helpers\Annotation\Annotation;
 use Helpers\ModelState;

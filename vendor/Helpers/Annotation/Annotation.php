@@ -66,7 +66,9 @@ class Annotation {
         "DateTime" => array(),
 
 
-        "DisplayName" => array("getFunction" => false)
+        "DisplayName" => array("getFunction" => false),
+
+        "Type" => array("getFunction" => false),
 
     );
 

@@ -215,3 +215,4 @@ pip-log.txt
 .mr.developer.cfg
 .idea/*
 .idea/scopes/scope_settings.xml
+vendor/Entities/Generator/*
