@@ -13,9 +13,6 @@ class IndexController extends Controller{
     public function Index(){
         $model = new Pessoa();
         $this->View(null,$model);
-
-        $a = new ClassGenerator();
-        $a->run();
     }
 
     public function Index_post(Pessoa $model){
