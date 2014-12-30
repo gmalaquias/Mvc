@@ -6,8 +6,7 @@
             "Areas\\": "Application",
             "Models": "Application",
             "Helpers": "vendor",
-            "Entities": "vendor",
-            "ClassGenerator": "vendor"
+            "Entities": "vendor"
         }
     }
 }

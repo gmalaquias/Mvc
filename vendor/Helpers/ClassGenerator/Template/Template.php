@@ -1,6 +1,6 @@
 <?php
 
-namespace ClassGenerator\Template;
+namespace Helpers\ClassGenerator\Template;
 
 class Template{
 	private $template;

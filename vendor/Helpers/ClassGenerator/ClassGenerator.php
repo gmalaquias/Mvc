@@ -6,11 +6,11 @@
  * Time: 14:55
  */
 
-namespace ClassGenerator;
+namespace Helpers\ClassGenerator;
 
 
 
-use ClassGenerator\Template\Template;
+use Helpers\ClassGenerator\Template\Template;
 use Mvc\Model;
 
 class ClassGenerator extends Model{
@@ -91,28 +91,19 @@ class ClassGenerator extends Model{
 
     private function generateClass($table){
         $vars = "";
-        foreach ($this->fields as $l) {
-
-
+        foreach ($this->fields as $l) :
             $type = null;
-
 
             if (count($l) == 2) {
                 //pegaTipo
                 $consulta = "SHOW FIELDS FROM ".$l[1]." where Field ='".$l[0]."'";
-
                 $busca = $this->db->Select($consulta);
-
                 $type = $busca->Type;
 
-
-
-                if($type != null){
-                   $vars .= "\n/**
+                $vars .= "\n/**
                  * @Name: ".$l[0]."
                  * @Type: ".$type."
                  */";
-                }
 
                 if($type == 'timestamp')
                     $vars .= "\n var $" . $l[0] . " = CURRENT_TIMESTAMP;\n";
@@ -125,11 +116,8 @@ class ClassGenerator extends Model{
                 if ($l[2] == "PRIMARY") {
 
                     $consulta = "SHOW FIELDS FROM ".$l[1]." where Field ='".$l[0]."'";
-
                     $busca = $this->db->Select($consulta);
-
                     $type = $busca->Type;
-
 
                     $vars .= "/**
                      * @PrimaryKey
@@ -149,9 +137,9 @@ class ClassGenerator extends Model{
                     }
                 }
             }
-        }
+        endforeach;
 
-        $template = new Template(VENDOR . "ClassGenerator" . DS . "Template" . DS . "ClasseTemplate.tpl");
+        $template = new Template(VENDOR . "Helpers" . DS . "ClassGenerator" . DS . "Template" . DS . "ClasseTemplate.tpl");
         $template->set('date', date("d/m/Y H:i:s"));
         $template->set('C', ucfirst($table));
         $template->set('vars', $vars);

@@ -1,9 +1,9 @@
 <?php
 namespace Controllers;
 
-use ClassGenerator\ClassGenerator;
 use Entities\Pessoa;
 use Helpers\Annotation\Annotation;
+use Helpers\ClassGenerator\ClassGenerator;
 use Helpers\ModelState;
 use Helpers\Session;
 use Mvc\Controller;
@@ -13,6 +13,9 @@ class IndexController extends Controller{
     public function Index(){
         $model = new Pessoa();
         $this->View(null,$model);
+
+        $a = new ClassGenerator();
+        $a->run();
     }
 
     public function Index_post(Pessoa $model){
