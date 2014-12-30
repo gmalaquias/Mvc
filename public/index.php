@@ -26,5 +26,9 @@ try {
     echo $e->getMessage();
 }
 
+
+echo '<br>';
+echo '<br>';
+echo '<br>';
 echo 'Tempo: ', (microtime(1) - $time), "s\n";
-echo 'Memória: ', (memory_get_usage() - $mem) / (1024 * 1024) . "MB";
+echo 'Memória: ', (memory_get_usage() - $mem) / (1024 * 1024) . " Mb";
