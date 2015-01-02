@@ -11,10 +11,8 @@ use Mvc\Controller;
 class IndexController extends Controller{
 
     public function Index(){
-        $model = new \stdClass();
+        $model = new Pessoa();
         $this->View(null,$model);
-
-        var_dump($_SESSION);
     }
 
     public function Index_post(Pessoa $model){
