@@ -52,11 +52,11 @@ class Controller
      */
     private function generateModel($model){
         if(is_object($model))
-            Session::set(md5(Request::getArea().Request::getController().Request::getAction()), get_class($model));
+            Session::set(md5(Request::getArea().Request::getController().Request::getAction()), base64_encode(get_class($model)));
     }
 
     public static function getTypeModel(){
-        $type = Session::get(md5(Request::getArea().Request::getController().Request::getAction()));
+        $type = base64_decode(Session::get(md5(Request::getArea().Request::getController().Request::getAction())));
         if($type == null)
             return 'stdClass';
 

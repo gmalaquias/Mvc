@@ -129,14 +129,12 @@ class Router
             $model = new $classe();
 
             foreach($post as $key => $valor):
-
                 $ex = explode("_", $key);
                 $count = count($ex);
                 $result = '$model->';
 
                 for($i =0; $i < $count; $i++)
                     $result .= '$ex[' . $i . ']' . ($i == $count - 1 ? '= $valor;' : '->');
-
 
                 eval($result);
 
