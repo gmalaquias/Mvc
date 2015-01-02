@@ -15,8 +15,13 @@ class IndexController extends Controller{
         $this->View(null,$model);
     }
 
-    public function Index_post(Pessoa $model){
+    public function Index_post(Pessoa $model, $arquivo = null){
         $this->View(null,$model);
+
+        var_dump($model);
+
+        echo 'Arquivo';
+        var_dump($arquivo);
     }
 
 }

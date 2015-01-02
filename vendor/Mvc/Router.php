@@ -99,9 +99,8 @@ class Router
         $addPost = PREFIX_POST;
         if(!method_exists($controller, $action.$addPost)) {
             $addPost = null;
-            if (!method_exists($controller, $action)) {
+            if (!method_exists($controller, $action))
                 self::error("Erro");
-            }
         }
 
         return $addPost;
@@ -121,7 +120,7 @@ class Router
     * Caso exista algum post na pagina, ele é tranformado em um objeto $model
     * e colocado como o primeiro argumento para receber no metodo do controller
     */
-    private static function  getPost(&$args){
+    private static function  getPost(&$parameters){
         if(isset($_POST) and count($_POST) > 0){
             $post = $_POST;
             $classe = Controller::getTypeModel();
@@ -129,24 +128,31 @@ class Router
             $model = new $classe();
 
             foreach($post as $key => $valor):
-
                 $ex = explode("_", $key);
                 $count = count($ex);
                 $result = '$model->';
-
                 for($i =0; $i < $count; $i++)
                     $result .= '$ex[' . $i . ']' . ($i == $count - 1 ? '= $valor;' : '->');
 
-
                 eval($result);
-
             endforeach;
+
+            $arrayMerge = array("model" => $model);
+
+            if(isset($_FILES)) {
+                foreach ($_FILES as $file => $args) {
+                   if(property_exists($model,$file))
+                       $model->$file = $args;
+                   else
+                       $arrayMerge[$file] = $args;
+                }
+            }
 
             ModelState::TryValidationModel($model);
 
-            $args = array_merge(array("model" => $model),$args);
+            $parameters = array_merge($arrayMerge,$parameters);
         }
 
-        return $args;
+        return $parameters;
     }
 }
