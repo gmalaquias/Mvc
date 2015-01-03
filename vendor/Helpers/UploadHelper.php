@@ -27,7 +27,8 @@ class UploadHelper {
 		}
 		// Caso script chegue a esse ponto, não houve erro com o upload e o PHP pode continuar
 		// Faz a verificação da extensão do arquivo
-		$extensao = strtolower(end(explode('.', $arquivo['name'])));
+        $extensao = explode('.', $arquivo['name']);
+		$extensao = strtolower(end($extensao));
 		/*if (array_search($extensao, $_UP['extensoes']) === false) {
 			echo "Por favor, envie arquivos com as seguintes extensões: jpg, png ou gif";
 		}*/
@@ -97,12 +98,12 @@ class UploadHelper {
 		imagecopyresampled($nova, $img, 0, 0, 0, 0, $largura, $altura, $x, $y);
 		imagesavealpha($nova, true);
 		imagedestroy($img);
-		imagepng($nova, "images/".$pasta."/$nome_imagem");
+		imagepng($nova, $pasta . DS . $nome_imagem);
 		imagedestroy($nova);	
 		}else{
 		imagecopyresampled($nova, $img, 0, 0, 0, 0, $largura, $altura, $x, $y);
 		imagedestroy($img);
-		imagejpeg($nova, "images/".$pasta."/$nome_imagem");
+		imagejpeg($nova, $pasta . DS . $nome_imagem);
 		imagedestroy($nova);
 		}
 		

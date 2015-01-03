@@ -22,8 +22,10 @@ define('DS', DIRECTORY_SEPARATOR);
 define('STATIC_URL', URL . 'site/util');
 define('IMG_URL',URL.'util/img');
 
+
 define('FOLDER_SRC','Application');
 define('ROOT', dirname(__DIR__) . DS);
+define('PATH_PUBLIC', ROOT . 'public' . DS);
 define('VENDOR', ROOT . 'vendor' . DS);
 define('HELPERS_PATH', ROOT . DS . "vendor" . DS . "Helpers" . DS);
 define('VALIDATORS_PATH', HELPERS_PATH . "Annotation" . DS . "Validators" . DS);
@@ -31,6 +33,7 @@ define('PATH_CONTROLLER', ROOT . FOLDER_SRC . DS . 'Controllers' . DS);
 define('PATH_VIEWS', ROOT . FOLDER_SRC . DS . 'Views' . DS);
 define('PATH_MODELS', ROOT . FOLDER_SRC . DS . 'Models' . DS);
 define('PATH_AREA', ROOT . FOLDER_SRC . DS . 'Areas' . DS);
+
 
 
 define('NAMESPACE_CONTROLLER', 'Controllers');
