@@ -8,7 +8,7 @@
 
 namespace Entities;
 
-class Pessoa{
+class Pessoa {
     /**
      * @PrimaryKey
      * @Name: PessoaId
@@ -81,5 +81,6 @@ class Pessoa{
      * @Type: tinyint(1)
      */
     var $Apagado = false;
+
 
 }

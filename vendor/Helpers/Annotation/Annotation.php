@@ -70,6 +70,8 @@ class Annotation {
 
         "Type" => array("getFunction" => false),
 
+        "PrimaryKey" => array("getFunction" => false),
+
     );
 
     /**

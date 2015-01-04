@@ -10,4 +10,5 @@ namespace Entities;
 
 class ${C}{
     ${vars}
+
 }

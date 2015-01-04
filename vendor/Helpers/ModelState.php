@@ -43,6 +43,16 @@ class ModelState {
         endforeach;
     }
 
+    public static function GetPrimary($model){
+        $annotation = new Annotation($model);
+        $get = $annotation->getAnnotations();
+
+        foreach ($get as $campo => $data):
+            if (array_key_exists("PrimaryKey", $data))
+                return $campo;
+        endforeach;
+    }
+
     public static function ConvertDateBr($model){
         $annotation = new Annotation($model);
         $get = $annotation->getAnnotations();
