@@ -4,20 +4,19 @@ namespace Controllers;
 use Entities\Pessoa;
 use Helpers\ModelState;
 use Mvc\Controller;
+use UnitOfWork\UnitOfWork;
 
 class IndexController extends Controller{
 
     public function Index(){
-        $model = new Pessoa();
-        //ModelState::RemoveNotMapped($model);
+       $model = new Pessoa();
+       //ModelState::RemoveNotMapped($model);
 
-        var_dump($model);
+       $Unitof = new UnitOfWork();
 
-        $model->PessoaId = 1;
-        $model->Nome = "ajsgdasd";
+       var_dump($Unitof->Repository('Pessoa')->Get('PessoaId = 2')->FirstOrDefault());
 
-
-        $this->View(null,$model);
+       $this->View(null,$model);
     }
 
     public function Index_post(Pessoa $model, $arquivo = null){
