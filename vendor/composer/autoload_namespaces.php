@@ -10,6 +10,7 @@ return array(
     'Models' => array($baseDir . '/Application'),
     'Helpers' => array($vendorDir),
     'Entities' => array($vendorDir),
+    'UnitOfWork' => array($vendorDir),
     'Controllers\\' => array($baseDir . '/Application'),
     'Areas\\' => array($baseDir . '/Application'),
 );
