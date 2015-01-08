@@ -12,34 +12,32 @@ namespace Mvc;
 
 class Layout
 {
-    public $layout;
-    public $conteudo;
-    public $title = 'Innet';
-    
-    public function __get($name){
-        return isset($this->$name) ? $this->$name : null;
-    }
-    
-    public function __set($name, $value){
-        $this->$name = $value;
-    }
+    public static $layout;
 
-    public function render($conteudo = null, $arquivo = null){
-        $this->conteudo = $conteudo;
-        $this->getArquivo($arquivo);
+    public static $content;
 
+    public static $title = 'Mvc';
+
+    public static $description = '';
+
+    public static $favicon;
+
+    public static function render($content = null, $arquivo = 'basic'){
+        self::$content = $content;
+        self::getArquivo($arquivo);
 
         if(!file_exists($arquivo) || $arquivo == null)
-            return $conteudo;
-
+            echo $content;
+        else {
             ob_start();
             include $arquivo;
             $render = ob_get_clean();
-            return $render;
+            echo $render;
+        }
     }
 
-    private function getArquivo(&$arquivo){
-        $arquivo = STATIC_PATH . DS . 'layouts'. DIRECTORY_SEPARATOR . $arquivo . '.php';
+    private static function getArquivo(&$arquivo){
+        $arquivo = PATH_LAYOUT . $arquivo . '.php';
     }
     
 }

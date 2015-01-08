@@ -24,6 +24,7 @@ class Router
      */
     public static function run()
     {
+        ob_start();
         //pega o controller na URL
         Request::run();
         Session::start();
@@ -70,14 +71,9 @@ class Router
 
         call_user_func_array(array($controlador, $action.$post), $args);
 
+        $content = ob_get_clean();
 
-        //retorno para ser usado no layout
-//        $return = array();
-//        $return['title'] = $controlador->title;
-//        $return['layout'] = $controlador->layout;
-//
-//        //retorna
-//        return $return;
+        Layout::render($content);
     }
 
     /**

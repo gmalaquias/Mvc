@@ -23,7 +23,7 @@ try {
     $a = new \Mvc\Router();
     $a->run();
 }catch (\Exception $e){
-    echo $e->getMessage();
+   \Mvc\Layout::render($e->getMessage(),'500');
 }
 
 

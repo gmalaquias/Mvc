@@ -25,9 +25,10 @@ define('IMG_URL',URL.'util/img');
 
 define('FOLDER_SRC','Application');
 define('ROOT', dirname(__DIR__) . DS);
-define('PATH_PUBLIC', ROOT . 'public' . DS);
 define('VENDOR', ROOT . 'vendor' . DS);
 define('HELPERS_PATH', ROOT . DS . "vendor" . DS . "Helpers" . DS);
+define('PATH_PUBLIC', ROOT . 'public' . DS);
+define('PATH_LAYOUT', PATH_PUBLIC . 'layouts' . DS);
 define('VALIDATORS_PATH', HELPERS_PATH . "Annotation" . DS . "Validators" . DS);
 define('PATH_CONTROLLER', ROOT . FOLDER_SRC . DS . 'Controllers' . DS);
 define('PATH_VIEWS', ROOT . FOLDER_SRC . DS . 'Views' . DS);
