@@ -72,6 +72,12 @@ define("PREFIX_POST", "_post");
 
 
 /**
+ * LAYOUT
+ */
+define('PREFIX_TITLE', 'MVC');
+
+
+/**
  * Error
  */
 register_shutdown_function( "error_tratamento" );

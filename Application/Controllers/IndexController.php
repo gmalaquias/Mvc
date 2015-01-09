@@ -14,12 +14,13 @@ class IndexController extends Controller{
 
        $Unitof = new UnitOfWork();
 
-       //var_dump($Unitof->Repository('Pessoa')->Get('PessoaId = 2')->FirstOrDefault());
+       //var_dump($Unitof->Repository('Pessoa')->Get('PessoaId = 2')->FirstOrDefault())
 
        $this->View(null,$model);
     }
 
     public function Index_post(Pessoa $model, $arquivo = null){
+        echo 'post';
         $this->View(null,$model);
     }
 

@@ -4,3 +4,6 @@
     <input type="file" name="upload" />
     <input type="submit"/>
 </form>
+
+
+<?php $this->layout('Index'); ?>

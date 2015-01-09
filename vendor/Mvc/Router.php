@@ -63,7 +63,8 @@ class Router
 
                 $post = self::VerificaMetodo($controlador, $action);
             }else{
-                self::error("Nada encontrado");
+                Layout::render(null,'404');
+                exit();
             }
         }
 
@@ -73,7 +74,7 @@ class Router
 
         $content = ob_get_clean();
 
-        Layout::render($content);
+        Layout::render($content, 'basic');
     }
 
     /**
@@ -86,7 +87,8 @@ class Router
     {
         if (!isset($_POST) OR count($_POST) == 0) {
             if (!method_exists($controller, $action)) {
-                self::error("Erro");
+                Layout::render(null,'404');
+                exit();
             }
 
             return null;
@@ -95,8 +97,10 @@ class Router
         $addPost = PREFIX_POST;
         if(!method_exists($controller, $action.$addPost)) {
             $addPost = null;
-            if (!method_exists($controller, $action))
-                self::error("Erro");
+            if (!method_exists($controller, $action)) {
+                Layout::render(null, '404');
+                exit();
+            }
         }
 
         return $addPost;

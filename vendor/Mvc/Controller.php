@@ -15,11 +15,10 @@ use Helpers\Session;
  */
 class Controller
 {
-    /**
-     *
-     */
-    public function __construct(){
-
+    public function layout($title = null, $desc = null, $favicon = 'favicon.png'){
+        Layout::setFavicon($favicon);
+        Layout::setDescription($desc);
+        Layout::setTitle($title);
     }
 
     /**

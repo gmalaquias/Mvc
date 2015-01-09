@@ -1,5 +1,22 @@
-Meu Arquivo basico de Layout
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title><?=\Mvc\Layout::getTitle();?></title>
+</head>
+<body>
 
-<?php echo \Mvc\Layout::$content; ?>
+<h1>Meu Arquivo basico de Layout</h1>
 
+<?php echo \Mvc\Layout::getContent(); ?>
+
+<br>
+<br>
+<br>
 Footer do meu layout basic
+
+</body>
+</html>
+
+
+
