@@ -74,7 +74,7 @@ class Router
 
         $content = ob_get_clean();
 
-        Layout::render($content, 'basic');
+        Layout::render($content);
     }
 
     /**

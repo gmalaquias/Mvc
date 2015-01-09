@@ -12,7 +12,7 @@ namespace Mvc;
 
 class Layout
 {
-    private static $layout;
+    private static $layout = 'basic';
 
     private static $content;
 
@@ -22,8 +22,15 @@ class Layout
 
     private static $favicon;
 
-    public static function render($content = null, $arquivo = 'basic'){
+    private static $outerTags;
+
+    public static function render($content = null, $arquivo = null){
         self::$content = $content;
+        if($arquivo != null)
+            self::setLayout($arquivo);
+
+        $arquivo = self::getLayout();
+
         self::getArquivo($arquivo);
 
         if(!file_exists($arquivo) || $arquivo == null)
@@ -104,6 +111,38 @@ class Layout
     public static function setContent($content)
     {
         self::$content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getLayout()
+    {
+        return self::$layout;
+    }
+
+    /**
+     * @param mixed $layout
+     */
+    public static function setLayout($layout)
+    {
+        self::$layout = $layout;
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getOuterTags()
+    {
+        return self::$outerTags;
+    }
+
+    /**
+     * @param mixed $outerTags
+     */
+    public static function setOuterTags($outerTags)
+    {
+        self::$outerTags = $outerTags;
     }
 
 }

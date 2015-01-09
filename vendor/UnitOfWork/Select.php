@@ -11,7 +11,7 @@ namespace UnitOfWork;
 
 use Mvc\Database;
 
-class End {
+class Select {
 
     /**
      * Usada para montar a query que sera executada
@@ -54,18 +54,21 @@ class End {
      */
     private $skip = null;
 
-
+    /**
+     * Campos que serão selecionados
+     */
     private $select = '*';
 
-
+    /**
+     * Usado para verificar se existe se um campo no select
+     */
     private $getUnique = false;
-
 
     function __construct($type, $query, $persist){
         $this->type = $type;
         $this->query = $query;
         $this->persist = $persist;
-        $this->db = new Database(DB_TYPE, DB_HOST, DB_NAME, DB_USER, DB_PASS);
+        $this->db = new Database();
     }
 
     function FirstOrDefault(){
@@ -115,6 +118,8 @@ class End {
             $this->getUnique = true;
         return $this;
     }
+
+    function Join($join){}
 
     private function ExecuteQuery($all = true){
         $classe = 'Entities\\'.$this->type;

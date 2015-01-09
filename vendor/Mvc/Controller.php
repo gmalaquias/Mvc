@@ -15,12 +15,6 @@ use Helpers\Session;
  */
 class Controller
 {
-    public function layout($title = null, $desc = null, $favicon = 'favicon.png'){
-        Layout::setFavicon($favicon);
-        Layout::setDescription($desc);
-        Layout::setTitle($title);
-    }
-
     /**
      * @param null $folder
      * @param null $model
@@ -102,4 +96,33 @@ class Controller
         return NAMESPACE_AREAS . '\\' . Request::getArea() . '\\' . 'Models' . '\\' . Request::getController();
 
     }
+
+    public function layout($layout = 'basic', $title = null, $desc = null, $favicon = 'favicon.png', $outerTags = null){
+        Layout::setFavicon($favicon);
+        Layout::setDescription($desc);
+        Layout::setTitle($title);
+        Layout::setLayout($layout);
+        Layout::setOuterTags($outerTags);
+    }
+
+    public function setTitle($title){
+        Layout::setTitle($title);
+    }
+
+    public function setLayout($layout){
+        Layout::setLayout($layout);
+    }
+
+    public function setDescription($desc){
+        Layout::setDescription($desc);
+    }
+
+    public function setFavicon($favicon){
+        Layout::setFavicon($favicon);
+    }
+
+    public function setOuterTags($tags){
+        Layout::setOuterTags($tags);
+    }
+
 } 

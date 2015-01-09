@@ -9,7 +9,7 @@
 namespace UnitOfWork;
 
 
-class Get {
+class Crud {
 
     private $type;
 
@@ -19,6 +19,13 @@ class Get {
 
     function Get($where, $persist){
         $query = "SELECT * FROM ".$this->type . ($where != null ? " WHERE ".$where : "");
-        return new End($this->type,$query,$persist);
+        return new Select($this->type,$query,$persist);
     }
-} 
+
+    function Insert($model){}
+
+    function Update($model){}
+
+    function Delete($model){}
+
+}

@@ -20,7 +20,7 @@ class Repository {
     }
 
     function Get($where = null, $persist = null){
-        $get = new Get($this->type);
+        $get = new Crud($this->type);
         return $get->Get($where,$persist);
     }
 
@@ -36,5 +36,9 @@ class Repository {
         }
 
         throw new UnitOfWorkException("Classe {$newClass} não encontrada", 1);
+    }
+
+    function ExecuteQuery(){
+
     }
 } 

@@ -6,4 +6,6 @@
 </form>
 
 
-<?php $this->layout('Index'); ?>
+<?php
+$this->setTitle('Index');
+?>

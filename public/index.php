@@ -13,7 +13,7 @@ try {
     $a = new \Mvc\Router();
     $a->run();
 }catch (\Exception $e){
-   \Mvc\Layout::render($e->getMessage(),'500');
+   //\Mvc\Layout::render($e->getMessage(),'500'); TODO: Colocar redirect
 }
 
 

@@ -2,8 +2,10 @@
 namespace Controllers;
 
 use Entities\Pessoa;
+use Helpers\EmailHelper;
 use Helpers\ModelState;
 use Mvc\Controller;
+use Mvc\MvcException;
 use UnitOfWork\UnitOfWork;
 
 class IndexController extends Controller{
@@ -14,7 +16,9 @@ class IndexController extends Controller{
 
        $Unitof = new UnitOfWork();
 
-       //var_dump($Unitof->Repository('Pessoa')->Get('PessoaId = 2')->FirstOrDefault())
+       //var_dump($Unitof->Repository('Pessoa')->Get('PessoaId = 1')->FirstOrDefault());
+
+       //throw new MvcException('asd');
 
        $this->View(null,$model);
     }

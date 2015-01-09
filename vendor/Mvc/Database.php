@@ -18,7 +18,7 @@ class Database extends PDO
      * @return void
      */
 
-    public function __construct($DB_TYPE, $DB_HOST, $DB_NAME, $DB_USER, $DB_PASS)
+    public function __construct($DB_TYPE = DB_TYPE, $DB_HOST = DB_HOST, $DB_NAME = DB_NAME, $DB_USER = DB_USER, $DB_PASS = DB_PASS)
     {
         $options = array(
             PDO::ATTR_PERSISTENT => true,
