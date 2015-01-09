@@ -9,5 +9,8 @@
             "Entities": "vendor",
             "UnitOfWork": "vendor"
         }
+    },
+    "require": {
+        "phpmailer/phpmailer": "dev-master"
     }
 }
