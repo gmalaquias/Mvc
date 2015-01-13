@@ -20,6 +20,7 @@ class IndexController extends Controller{
 
        //throw new MvcException('asd');
 
+
        $this->View(null,$model);
     }
 

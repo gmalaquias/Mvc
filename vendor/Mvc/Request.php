@@ -11,8 +11,8 @@ namespace Mvc;
 class Request
 {
     private static $_area = null;
-    private static $_controller = "IndexController";
-    private static $_action = "Index";
+    private static $_controller = DEFAULT_CONTROLLER;
+    private static $_action = DEFAULT_VIEW;
     private static $_args = array();
 
     /**
@@ -25,9 +25,9 @@ class Request
 
         $segmentos = explode('/',$_GET["url"]);
 
-        self::$_controller = (($c = array_shift($segmentos)) ? $c : 'Index') . 'Controller';
+        self::$_controller = (($c = array_shift($segmentos)) ? $c : DEFAULT_CONTROLLER_ABV) . 'Controller';
 
-        self::$_action = ($m = array_shift($segmentos)) ? $m : 'Index';
+        self::$_action = ($m = array_shift($segmentos)) ? $m : DEFAULT_VIEW;
 
         self::$_args = (count($segmentos) > 0) ? $segmentos : array();
 

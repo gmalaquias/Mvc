@@ -15,6 +15,14 @@ use Helpers\Session;
  */
 class Controller
 {
+
+    /**
+     * metodo chamado sempre antes de exibir as paginas
+     */
+    function __construct(){
+
+    }
+
     /**
      * @param null $folder
      * @param null $model

@@ -6,13 +6,14 @@
  * Time: 02:46
  */
 
-namespace Areas\Teste\Controllers;
+namespace Areas\AreaTeste\Controllers;
 
 use Mvc\Controller;
 
 class TesteController extends Controller{
 
     public function Index(){
+        echo 'Teste';
         $this->View();
     }
 

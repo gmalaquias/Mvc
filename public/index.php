@@ -10,8 +10,7 @@ require_once VENDOR . 'autoload.php';
 header('Content-Type: text/html; charset=utf-8');
 
 try {
-    $a = new \Mvc\Router();
-    $a->run();
+    \Mvc\Router::run();
 }catch (\Exception $e){
    //\Mvc\Layout::render($e->getMessage(),'500'); TODO: Colocar redirect
 }

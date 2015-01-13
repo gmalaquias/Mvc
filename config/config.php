@@ -72,6 +72,14 @@ define("PREFIX_POST", "_post");
 
 
 /**
+ * DEFAULT Constroller,View
+ */
+define("DEFAULT_CONTROLLER","IndexController");
+define("DEFAULT_CONTROLLER_ABV","Index");
+define("DEFAULT_VIEW","Index");
+
+
+/**
  * LAYOUT
  */
 define('PREFIX_TITLE', 'MVC');
