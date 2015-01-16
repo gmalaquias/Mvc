@@ -17,26 +17,34 @@ define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 define('URL_SUB_FOLDER', str_replace(URL_PUBLIC_FOLDER, '', dirname($_SERVER['SCRIPT_NAME'])));
 define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 
-
+/**
+ * DEFAULT para PATH
+ */
 define('DS', DIRECTORY_SEPARATOR);
-define('STATIC_URL', URL . 'site/util');
-define('IMG_URL',URL.'util/img');
-
-
-define('FOLDER_SRC','Application');
 define('ROOT', dirname(__DIR__) . DS);
+
+/**
+ * Caso mudar o padrao Application, mudar no composer e gerar os autoloads
+ */
+define('FOLDER_SRC','Application');
+define('APP', ROOT . FOLDER_SRC . DS);
+
 define('VENDOR', ROOT . 'vendor' . DS);
-define('HELPERS_PATH', ROOT . DS . "vendor" . DS . "Helpers" . DS);
+
 define('PATH_PUBLIC', ROOT . 'public' . DS);
 define('PATH_LAYOUT', PATH_PUBLIC . 'layouts' . DS);
+
+define('HELPERS_PATH', VENDOR . "Helpers" . DS);
 define('VALIDATORS_PATH', HELPERS_PATH . "Annotation" . DS . "Validators" . DS);
-define('PATH_CONTROLLER', ROOT . FOLDER_SRC . DS . 'Controllers' . DS);
-define('PATH_VIEWS', ROOT . FOLDER_SRC . DS . 'Views' . DS);
-define('PATH_MODELS', ROOT . FOLDER_SRC . DS . 'Models' . DS);
-define('PATH_AREA', ROOT . FOLDER_SRC . DS . 'Areas' . DS);
 
+define('PATH_CONTROLLER', APP . 'Controllers' . DS);
+define('PATH_VIEWS',      APP . 'Views' . DS);
+define('PATH_MODELS',     APP . 'Models' . DS);
+define('PATH_AREA',       APP . 'Areas' . DS);
 
-
+/**
+ * Namespaces
+ */
 define('NAMESPACE_CONTROLLER', 'Controllers');
 define('NAMESPACE_MODELS', 'Models');
 define('NAMESPACE_AREAS', 'Areas');
@@ -70,7 +78,6 @@ define("PASS_EMAIL","");
  */
 define("PREFIX_POST", "_post");
 
-
 /**
  * DEFAULT Constroller,View
  */
@@ -83,6 +90,11 @@ define("DEFAULT_VIEW","Index");
  * LAYOUT
  */
 define('PREFIX_TITLE', 'MVC');
+define("DEFAULT_LAYOUT", "basic");
+define("DEFAULT_TITLE","Alcatraz");
+define("DEFAULT_FAVICON","");
+define("DEFAULT_DESC","");
+define("Default_TAGS","");
 
 
 /**

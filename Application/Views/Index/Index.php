@@ -7,5 +7,5 @@
 
 
 <?php
-$this->setTitle('Index');
+
 ?>

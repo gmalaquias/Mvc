@@ -12,17 +12,17 @@ namespace Mvc;
 
 class Layout
 {
-    private static $layout = 'basic';
+    private static $layout = DEFAULT_LAYOUT;
 
     private static $content;
 
-    private static $title = 'Page';
+    private static $title = DEFAULT_TITLE;
 
-    private static $description = '';
+    private static $description = DEFAULT_DESC;
 
-    private static $favicon;
+    private static $favicon = DEFAULT_FAVICON;
 
-    private static $outerTags;
+    private static $outerTags = Default_TAGS;
 
     public static function render($content = null, $arquivo = null){
         self::$content = $content;
