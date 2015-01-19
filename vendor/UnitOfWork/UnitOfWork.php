@@ -12,14 +12,12 @@ namespace UnitOfWork;
 use Helpers\ModelState;
 use Mvc\Database;
 
-class UnitOfWork {
-
-    private $db;
+class UnitOfWork extends Database {
 
     private $transaction = false;
 
     function __construct(){
-        $this->db = new Database();
+        parent::__construct();
         return $this;
     }
 
@@ -47,7 +45,7 @@ class UnitOfWork {
     }
 
     function Insert($model){
-         $this->OpenTransaction();
+        $this->OpenTransaction();
 
         $data = clone $model;
 
@@ -67,7 +65,7 @@ class UnitOfWork {
 
 
         // Prepara a Query
-        $sth = $this->db->prepare("INSERT INTO $table (`$camposNomes`) VALUES ($camposValores)");
+        $sth = $this->prepare("INSERT INTO $table (`$camposNomes`) VALUES ($camposValores)");
 
         // Define os dados
         foreach ($data as $key => $value) {
@@ -83,17 +81,17 @@ class UnitOfWork {
 
         $primaryKey = ModelState::GetPrimary($model);
         if(!empty($primaryKey))
-            $model->$primaryKey = $this->db->lastInsertId();
-        return $this->db->lastInsertId();
+            $model->$primaryKey = $this->lastInsertId();
+        return $this->lastInsertId();
     }
 
     function Save(){
         if($this->transaction) {
             try {
-                $this->db->commit();
-                $this->db->exec("SET FOREIGN_KEY_CHECKS = 1;");
+                $this->commit();
+                $this->exec("SET FOREIGN_KEY_CHECKS = 1;");
             } catch (\Exception $e) {
-                $this->db->rollBack();
+                $this->rollBack();
                 echo $e->getMessage();
             }
 
@@ -102,6 +100,14 @@ class UnitOfWork {
     }
 
     private function OpenTransaction(){
+        if(!$this->transaction) {
+            $this->beginTransaction();
+            $this->exec("SET FOREIGN_KEY_CHECKS = 0;");
+            $this->transaction = true;
+        }
+    }
+
+    function __destruct(){
         unset($this);
     }
 

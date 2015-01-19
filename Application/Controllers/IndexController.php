@@ -21,7 +21,7 @@ class IndexController extends Controller{
         $unitof->Insert($model);
         $unitof->Save();
 
-
+        var_dump($model);
         $this->View(null,$model);
     }
 
