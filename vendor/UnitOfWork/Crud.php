@@ -22,10 +22,4 @@ class Crud {
         return new Select($this->type,$query,$persist);
     }
 
-    function Insert($model){}
-
-    function Update($model){}
-
-    function Delete($model){}
-
 }
