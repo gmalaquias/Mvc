@@ -137,6 +137,7 @@ class ClassGenerator extends Model
                 } else {
                     if ($l[0] != '') {
                         $vars .= "\n/**
+                         * @NotMapped
                          * @Name: _" . ucfirst($l[0]) . "
                          * @Fk: " . $l[1] . "
                          * @Type: " . ucfirst($l[2]) . "

@@ -122,7 +122,7 @@ class Select {
     function Join($join){}
 
     private function ExecuteQuery($all = true){
-        $classe = 'Entities\\'.$this->type;
+        $classe = NAMESPACE_ENTITIES . $this->type;
         $query = $this->getQuery();
 
         return $this->db->select($query,(class_exists ($classe) && !$this->getUnique ? $classe : ''),$all);

@@ -3,22 +3,23 @@
 /**
  * DAL
  * @author: Gabriel Malaquias
- * @date: 30/12/2014 16:10:01
+ * @date: 19/01/2015 14:10:56
  */
 
 namespace Entities;
 
-class Pessoa {
+class Pessoa{
     /**
      * @PrimaryKey
      * @Name: PessoaId
      * @Type: int(11)
      */
-    var $PessoaId;
+    var $PessoaId = 0;
 
     /**
      * @Name: Nome
      * @Type: varchar(60)
+     * @Required
      */
     var $Nome;
 

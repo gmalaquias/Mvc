@@ -3,7 +3,7 @@
 /**
  * DAL
  * @author: Gabriel Malaquias
- * @date: 30/12/2014 16:44:52
+ * @date: 19/01/2015 14:10:55
  */
 
 namespace Entities;
@@ -14,7 +14,7 @@ class Anotacao{
      * @Name: AnotacaoId
      * @Type: int(11)
      */
-    var $AnotacaoId;
+    var $AnotacaoId = 0;
 
     /**
      * @Name: Titulo
@@ -32,7 +32,7 @@ class Anotacao{
      * @Name: PessoaId
      * @Type: int(11)
      */
-    var $PessoaId;
+    var $PessoaId = 0;
 
     /**
      * @Name: DataCadastro
@@ -62,20 +62,23 @@ class Anotacao{
      * @Name: Pessoa
      * @Type: int(11)
      */
-    var $Pessoa;
+    var $Pessoa = 0;
 
     /**
+     * @NotMapped
      * @Name: _Pessoa
-     * @Fk: Pessoa
+     * @Fk: PessoaId
      * @Type: Pessoa
      */
     var $_Pessoa;
 
     /**
+     * @NotMapped
      * @Name: _Pessoa1
-     * @Fk: PessoaId
+     * @Fk: Pessoa
      * @Type: Pessoa
      */
     var $_Pessoa1;
+
 
 }

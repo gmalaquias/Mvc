@@ -51,6 +51,8 @@ class ModelState {
             if (array_key_exists("PrimaryKey", $data))
                 return $campo;
         endforeach;
+
+        return null;
     }
 
     public static function ConvertDateBr($model){

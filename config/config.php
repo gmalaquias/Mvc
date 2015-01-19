@@ -49,6 +49,7 @@ define('NAMESPACE_CONTROLLER', 'Controllers');
 define('NAMESPACE_MODELS', 'Models');
 define('NAMESPACE_AREAS', 'Areas');
 define('NAMESPACE_VALIDATORS', 'Helpers\\Annotation\\Validators\\');
+define('NAMESPACE_ENTITIES', 'Entities\\');
 
 /**
  * VARIAVEL DE TIMESTAMP PARA PADRÃO DE ATRIBUTOS

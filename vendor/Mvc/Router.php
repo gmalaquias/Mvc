@@ -70,9 +70,14 @@ class Router
 
         self::getPost($args);
 
-        call_user_func_array(array($controlador, $action.$post), $args);
+//        try {
+            call_user_func_array(array($controlador, $action . $post), $args);
+//        }catch (\Exception $e){
+//            echo $e->getMessage();
+//        }
 
         $content = ob_get_clean();
+
 
         Layout::render($content);
     }
@@ -132,7 +137,7 @@ class Router
                 $count = count($ex);
                 $result = '$model->';
                 for($i =0; $i < $count; $i++)
-                    $result .= '$ex[' . $i . ']' . ($i == $count - 1 ? '= $valor;' : '->');
+                    $result .= '$ex[' . $i . ']' . ($i == $count - 1 ? '= empty(trim($valor)) ? null : $valor;' : '->');
 
                 eval($result);
             endforeach;

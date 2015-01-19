@@ -8,6 +8,7 @@
  */
 namespace Mvc;
 
+use Helpers\ModelState;
 use \PDO;
 
 class Database extends PDO
@@ -87,35 +88,35 @@ class Database extends PDO
 
     public function insert($table, $data)
     {
-        if (is_object($data))
-            ModelState::RemoveNotMapped($data);
+            if (is_object($data))
+                ModelState::RemoveNotMapped($data);
 
-        $data = (array)$data;
+            $data = (array)$data;
 
-        // Ordena
-        ksort($data);
+            // Ordena
+            ksort($data);
 
-        // Campos e valores
-        $camposNomes = implode('`, `', array_keys($data));
-        $camposValores = ':' . implode(', :', array_keys($data));
+            // Campos e valores
+            $camposNomes = implode('`, `', array_keys($data));
+            $camposValores = ':' . implode(', :', array_keys($data));
 
-        // Prepara a Query
-        $sth = $this->prepare("INSERT INTO $table (`$camposNomes`) VALUES ($camposValores)");
+            // Prepara a Query
+            $sth = $this->prepare("INSERT INTO $table (`$camposNomes`) VALUES ($camposValores)");
 
-        // Define os dados
-        foreach ($data as $key => $value) {
-            // Se o tipo do dado for inteiro, usa PDO::PARAM_INT, caso contr�rio, PDO::PARAM_STR
-            $tipo = (is_int($value)) ? PDO::PARAM_INT : PDO::PARAM_STR;
+            // Define os dados
+            foreach ($data as $key => $value) {
+                // Se o tipo do dado for inteiro, usa PDO::PARAM_INT, caso contr�rio, PDO::PARAM_STR
+                $tipo = (is_int($value)) ? PDO::PARAM_INT : PDO::PARAM_STR;
 
-            // Define o dado
-            $sth->bindValue(":$key", $value, $tipo);
-        }
+                // Define o dado
+                $sth->bindValue(":$key", $value, $tipo);
+            }
 
-        // Executa
-        $sth->execute();
+            // Executa
+            $sth->execute();
 
-        // Retorna o ID desse item inserido
-        return $this->lastInsertId();
+            // Retorna o ID desse item inserido
+            return $this->lastInsertId();
     }
 
     public function update($table, $data, $where)
