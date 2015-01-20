@@ -20,6 +20,11 @@ class Select {
     public $query;
 
     /**
+     * Guarda a seção de db do UnitOfWork
+     */
+    private $db;
+
+    /**
      * Passa nomes dos attributos virtuais para seu preenchimento
      * @var bool
      */
@@ -30,12 +35,6 @@ class Select {
      * @var bool
      */
     private $order = false;
-
-    /**
-     * Usada pra pegar os dados do banco
-     * @var Database
-     */
-    private $db;
 
     /**
      * Guarda o tipo da classe que esta sendo buscado
@@ -64,11 +63,11 @@ class Select {
      */
     private $getUnique = false;
 
-    function __construct($type, $query, $persist){
+    function __construct($type, $query, $persist, $db){
         $this->type = $type;
         $this->query = $query;
         $this->persist = $persist;
-        $this->db = new Database();
+        $this->db = $db;
     }
 
     function FirstOrDefault(){

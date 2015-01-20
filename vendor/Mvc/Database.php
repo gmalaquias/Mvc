@@ -86,7 +86,7 @@ class Database extends PDO
     }
 
 
-    public function insert($table, $data)
+    public function ExecuteInsert($table, $data)
     {
             if (is_object($data))
                 ModelState::RemoveNotMapped($data);
@@ -119,7 +119,7 @@ class Database extends PDO
             return $this->lastInsertId();
     }
 
-    public function update($table, $data, $where)
+    public function ExecuteUpdate($table, $data, $where)
     {
         if (is_object($data))
             ModelState::RemoveNotMapped($data);
@@ -160,7 +160,4 @@ class Database extends PDO
         return $this->exec("DELETE FROM $table WHERE $where LIMIT $limit");
     }
 
-    public function __destruct(){
-        unset($this);
-    }
 }

@@ -17,9 +17,9 @@ class Crud {
         $this->type = $type;
     }
 
-    function Get($where, $persist){
+    function Get($where, $persist, $db){
         $query = "SELECT * FROM ".$this->type . ($where != null ? " WHERE ".$where : "");
-        return new Select($this->type,$query,$persist);
+        return new Select($this->type,$query,$persist, $db);
     }
 
 }

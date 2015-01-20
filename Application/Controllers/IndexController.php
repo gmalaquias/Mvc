@@ -9,19 +9,13 @@ use Helpers\ModelState;
 use Mvc\Controller;
 use Mvc\MvcException;
 use UnitOfWork\UnitOfWork;
+use UnitOfWork\UnitOfWorkException;
 
 class IndexController extends Controller{
 
     public function Index(){
         $model = new Pessoa();
-
-
-        $model->Nome = "Teste Rollback";
-        $unitof = new UnitOfWork();
-        $unitof->Insert($model);
-        $unitof->Save();
-
-        var_dump($model);
+        
         $this->View(null,$model);
     }
 
