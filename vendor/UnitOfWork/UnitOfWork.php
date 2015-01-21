@@ -91,7 +91,7 @@ class UnitOfWork extends Database {
             $tipo = (is_int($value)) ? \PDO::PARAM_INT : \PDO::PARAM_STR;
 
             // Define o dado
-            $sth->bindValue(":$key", $value, $tipo);
+            $sth->bindValue(":$key", trim($value), $tipo);
         }
 
         // Executa
@@ -147,7 +147,7 @@ class UnitOfWork extends Database {
             $tipo = (is_int($model->$key)) ? \PDO::PARAM_INT : \PDO::PARAM_STR;
 
             // Define o dado
-            $sth->bindValue(":$key", $model->$key, $tipo);
+            $sth->bindValue(":$key", trim($model->$key), $tipo);
         }
 
         try {
