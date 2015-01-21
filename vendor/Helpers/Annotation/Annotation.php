@@ -44,6 +44,7 @@ class Annotation {
     /**
      * @type: array
      * @description: receives type annotations
+     * Caso getFunction igual a false então nao chama a classe de validação no ModelState
      */
     private $_attributes = array(
 

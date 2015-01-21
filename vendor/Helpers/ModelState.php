@@ -78,7 +78,12 @@ class ModelState {
         foreach($annotation as $campo => $options):
             foreach($options as $attr => $valor):
                 if(!array_key_exists("getFunction", $attributes[$attr]) || $attributes[$attr]["getFunction"] == true)
-                    $parameter = new Attributes($classAnnotations->getName($campo), $model->$campo, $attr,$valor,$attributes[$attr]);
+                    $parameter = new Attributes($campo,
+                                                $classAnnotations->getName($campo),
+                                                $model->$campo, $attr,
+                                                $valor,$attributes[$attr],
+                                                $model
+                                               );
             endforeach;
         endforeach;
     }

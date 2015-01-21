@@ -11,22 +11,49 @@ namespace Helpers\Annotation\Validators;
 
 class Attributes {
 
+    /*
+     * Nome do campo
+     */
     public $_name;
 
+    /**
+     * DisplayName do campo
+     */
+    public $_displayName;
+
+    /**
+     * Valor do campo
+     */
     public $_value;
 
+    /**
+     * Anotação selecionada
+     */
     public $_annnotation;
 
+    /**
+     * Valor da Anotação
+     */
     public $_arg;
 
+    /**
+     * Array do opções da anotação
+     */
     public $_options;
 
-    public function __construct($name, $value, $annotation, $arg, $options){
+    /**
+     * Classe que vem o campo, pode ser usado para alterar seu valor na classe atual
+     */
+    public $_model;
+
+    public function __construct($name, $displayName, $value, $annotation, $arg, $options, $model){
         $this->_name        = $name;
+        $this->_displayName = $displayName;
         $this->_value       = $value;
         $this->_annnotation = $annotation;
         $this->_arg         = $arg;
         $this->_options     = $options;
+        $this->_model       = $model;
 
         $this->callFunction();
     }
