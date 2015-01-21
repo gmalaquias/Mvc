@@ -15,7 +15,7 @@ class IndexController extends Controller{
 
     public function Index(){
         $model = new Pessoa();
-        
+
         $this->View(null,$model);
     }
 

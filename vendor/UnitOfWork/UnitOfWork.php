@@ -8,12 +8,14 @@
 
 namespace UnitOfWork;
 
-
 use Helpers\ModelState;
 use Mvc\Database;
 
 class UnitOfWork extends Database {
 
+    /**
+     * Guarda se a transação ja foi aberta ou não
+     */
     private $transactionActive = false;
 
     /**
@@ -105,8 +107,12 @@ class UnitOfWork extends Database {
         return $this->lastInsertId();
     }
 
-
-    public function Update($model, $campos)
+    /**
+     * Atualiza os dados no banco atraves de uma model mapeada
+     * @param $model Objeto que contem os dados
+     * @param $campos Seleciona os campos que quer atulizar passando por array, caso seja nulo serão atualizados todos os campos
+     */
+    public function Update($model, $campos = null)
     {
         $data = clone $model;
 
@@ -122,6 +128,9 @@ class UnitOfWork extends Database {
         $data = (array)$data;
 
         $novosDados = NULL;
+
+        if($campos == null)
+            $campos = array_keys($data);
 
         foreach ($campos as $key) {
             $novosDados .= "`$key`=:$key,";
@@ -150,27 +159,32 @@ class UnitOfWork extends Database {
     }
 
     /**
-     * Faz o commit dos dados enviados
-     * Caso ocorra algum erro, não envia nada
+     * Deleta os dados no banco atraves de uma model mapeada
+     * @param $model
+     * @return int
      */
-    public function Fim(){
-        var_dump($this->transactionActive);
-//        if($this->transaction) {
-//            try {
-//                $this->commit();
-//                $this->exec("SET FOREIGN_KEY_CHECKS = 1;");
-//            } catch (\Exception $e) {
-//                $this->rollBack();
-//                echo $e->getMessage();
-//            }
-//
-//            $this->transactionActive = false;
-//        }
+    public function Delete($model)
+    {
+        $this->OpenTransaction();
 
+        $primaryKey = ModelState::GetPrimary($model);
+        $table = $this->getTableName($model);
+
+        if($primaryKey != null) {
+            $exec = $this->prepare("DELETE FROM " . $table . " WHERE " . $primaryKey . " = " . $model->$primaryKey . " LIMIT 1");
+            $exec->execute();
+            if($exec->rowCount() > 0)
+                return true;
+
+            throw new UnitOfWorkException("A execução atingiu um numero 0 de linhas");
+        }
         return false;
     }
 
-
+    /**
+     * Finaliza a transação com o banco e commita as alterações
+     * @return bool
+     */
     public function Save(){
         if($this->transactionActive) {
             try {
@@ -213,8 +227,4 @@ class UnitOfWork extends Database {
     function __destruct(){
         unset($this);
     }
-
-
-
-
-} 
+}

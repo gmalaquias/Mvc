@@ -78,13 +78,11 @@ class Database extends PDO
 
     }
 
-
     function getClass($class){
         if(is_object($class))
             return get_class($class);
         return $class;
     }
-
 
     public function ExecuteInsert($table, $data)
     {
@@ -153,8 +151,7 @@ class Database extends PDO
         return $sth->execute();
     }
 
-
-    public function delete($table, $where, $limit = 1)
+    public function deleteExecute($table, $where, $limit = 1)
     {
         // Deleta
         return $this->exec("DELETE FROM $table WHERE $where LIMIT $limit");

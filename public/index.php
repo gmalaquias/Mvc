@@ -12,6 +12,7 @@ header('Content-Type: text/html; charset=utf-8');
 try {
     \Mvc\Router::run();
 }catch (\Exception $e){
+   echo $e;
    //\Mvc\Layout::render($e->getMessage(),'500'); TODO: Colocar redirect
 }
 
