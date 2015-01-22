@@ -76,15 +76,30 @@ class ModelState {
         $annotation = $classAnnotations->getAnnotations();
 
         foreach($annotation as $campo => $options):
+            //var_dump($options);
             foreach($options as $attr => $valor):
                 if(!array_key_exists("getFunction", $attributes[$attr]) || $attributes[$attr]["getFunction"] == true)
                     $parameter = new Attributes($campo,
                                                 $classAnnotations->getName($campo),
-                                                $model->$campo, $attr,
+                                                $model->$campo,
+                                                $attr,
                                                 $valor,$attributes[$attr],
-                                                $model
+                                                $model,
+                                                $options
                                                );
             endforeach;
+
+            //Chame um metodo default para todos os campos
+            if(USE_STANDARD_VALIDATOR)
+                $parameter = new Attributes($campo,
+                    $classAnnotations->getName($campo),
+                    $model->$campo,
+                    "Standard",
+                    $valor,$attributes[$attr],
+                    $model,
+                    $options
+                );
+
         endforeach;
     }
 

@@ -99,6 +99,12 @@ define("Default_TAGS","");
 
 
 /**
+ * Validation
+ */
+define('USE_STANDARD_VALIDATOR', true);
+
+
+/**
  * Error
  */
 register_shutdown_function( "error_tratamento" );

@@ -17,6 +17,7 @@ class Pessoa{
     var $PessoaId = 0;
 
     /**
+     * @DisplayName: Nome Completo
      * @Name: Nome
      * @Type: varchar(60)
      * @Required

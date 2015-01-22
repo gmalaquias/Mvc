@@ -46,7 +46,12 @@ class Attributes {
      */
     public $_model;
 
-    public function __construct($name, $displayName, $value, $annotation, $arg, $options, $model){
+    /**
+     * Contem todas as anotações para o campo passado
+     */
+    public $_allOptions;
+
+    public function __construct($name, $displayName, $value, $annotation, $arg, $options, $model, $allOptions ){
         $this->_name        = $name;
         $this->_displayName = $displayName;
         $this->_value       = $value;
@@ -54,6 +59,7 @@ class Attributes {
         $this->_arg         = $arg;
         $this->_options     = $options;
         $this->_model       = $model;
+        $this->_allOptions   = $allOptions;
 
         $this->callFunction();
     }

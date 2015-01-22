@@ -16,7 +16,7 @@ abstract class Required implements iValidator {
 
     public static function isValid(Attributes $object){
         if(!Validation::Required($object->_value))
-            ModelState::addError("O campo " . $object->_name . " é obrigatório.");
+            ModelState::addError("O campo " . $object->_displayName . " é obrigatório.");
     }
 
 } 

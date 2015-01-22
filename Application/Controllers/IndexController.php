@@ -15,6 +15,12 @@ class IndexController extends Controller{
 
     public function Index(){
         $model = new Pessoa();
+        //$model->Nome = "Gabri";
+
+        ModelState::TryValidationModel($model);
+
+        var_dump(ModelState::getErrors());
+
 
         $this->View(null,$model);
     }
@@ -22,9 +28,9 @@ class IndexController extends Controller{
     public function Index_post(Pessoa $model, $arquivo = null){
         try {
             if(ModelState::isValid()) {
-                $unitof = new UnitOfWork();
-                $unitof->Insert($model);
-                $unitof->Save();
+//                $unitof = new UnitOfWork();
+//                $unitof->Insert($model);
+//                $unitof->Save();
 
                 echo "Salvo";
             }

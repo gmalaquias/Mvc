@@ -47,33 +47,28 @@ class Annotation {
      * Caso getFunction igual a false então nao chama a classe de validação no ModelState
      */
     private $_attributes = array(
+                                    "Required" => array(),
 
+                                    "NotMapped" => array("getFunction" => false),
 
-        "Required" => array(),
+                                    "Range" => array(),
 
+                                    "Length" => array(),
 
-        "NotMapped" => array("getFunction" => false),
+                                    "Email" => array(),
 
+                                    "Date" =>  array(),
 
-        "Range" => array(),
+                                    "DateTime" => array(),
 
+                                    "DisplayName" => array("getFunction" => false),
 
-        "Email" => array(),
+                                    "Type" => array("getFunction" => false),
 
+                                    "PrimaryKey" => array("getFunction" => false),
 
-        "Date" =>  array(),
-
-
-        "DateTime" => array(),
-
-
-        "DisplayName" => array("getFunction" => false),
-
-        "Type" => array("getFunction" => false),
-
-        "PrimaryKey" => array("getFunction" => false),
-
-    );
+                                    "AllowHtml" => array("getFunction" => false)
+                                );
 
     /**
      * @param: $class Class
