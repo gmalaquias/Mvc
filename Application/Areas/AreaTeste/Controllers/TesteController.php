@@ -13,7 +13,7 @@ use Mvc\Controller;
 class TesteController extends Controller{
 
     public function Index(){
-        echo 'Teste';
+        echo 'Agora';
         $this->View();
     }
 

@@ -19,7 +19,7 @@ class IndexController extends Controller{
 
         ModelState::TryValidationModel($model);
 
-        var_dump(ModelState::getErrors());
+        var_dump($_GET);
 
 
         $this->View(null,$model);
