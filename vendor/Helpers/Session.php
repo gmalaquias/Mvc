@@ -11,6 +11,8 @@ namespace Helpers;
 
 class Session{
 
+    public static $session_id;
+
     /**
      * Inicializa a sessão
      * @access public
@@ -20,7 +22,7 @@ class Session{
     public static function start(){
         if(!isset($_SESSION)){
             session_start();
-            session_regenerate_id();
+            self::$session_id = session_id();
         }
     }
 
@@ -72,5 +74,7 @@ class Session{
     public static function destroy(){
         session_destroy();
         unset($_SESSION);
+        session_start();
+        //session_regenerate_id();
     }
 }
