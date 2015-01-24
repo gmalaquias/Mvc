@@ -67,7 +67,9 @@ class Annotation {
 
                                     "PrimaryKey" => array("getFunction" => false),
 
-                                    "AllowHtml" => array("getFunction" => false)
+                                    "AllowHtml" => array("getFunction" => false),
+
+                                    "Type" => array("getFunction" => false)
                                 );
 
     /**
