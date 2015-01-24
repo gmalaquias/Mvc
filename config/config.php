@@ -9,6 +9,13 @@
 date_default_timezone_set('America/Sao_Paulo');
 
 /**
+ * DEFAULT para PATH
+ */
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT', dirname(__DIR__) . DS);
+
+
+/**
  * DEFINIÇÃO DE CONSTANTES PARA URL
  */
 define('URL_PUBLIC_FOLDER', 'public');
@@ -17,11 +24,6 @@ define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 define('URL_SUB_FOLDER', str_replace(URL_PUBLIC_FOLDER, '', dirname($_SERVER['SCRIPT_NAME'])));
 define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 
-/**
- * DEFAULT para PATH
- */
-define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', dirname(__DIR__) . DS);
 
 /**
  * Caso mudar o padrao Application, mudar no composer e gerar os autoloads
