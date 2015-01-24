@@ -37,7 +37,7 @@ class Controller
     }
 
     /**
-     *
+     * Carrega a model
      */
     public function Model()
     {
@@ -49,13 +49,16 @@ class Controller
     }
 
     /**
-     *
+     * Gera um gid para gravar a tipagem da model por action
      */
     private function generateModel($model){
         if(is_object($model))
             Session::set(md5(Request::getArea().Request::getController().Request::getAction()), base64_encode(get_class($model)));
     }
 
+    /**
+     * Resgata o tipo da model
+     */
     public static function getTypeModel(){
         $type = base64_decode(Session::get(md5(Request::getArea().Request::getController().Request::getAction())));
         if($type == null)
@@ -105,6 +108,8 @@ class Controller
 
     }
 
+    #region .: Layout :.
+
     public function layout($layout = 'basic', $title = null, $desc = null, $favicon = 'favicon.png', $outerTags = null){
         Layout::setFavicon($favicon);
         Layout::setDescription($desc);
@@ -133,4 +138,6 @@ class Controller
         Layout::setOuterTags($tags);
     }
 
-} 
+    #endregion
+
+}
