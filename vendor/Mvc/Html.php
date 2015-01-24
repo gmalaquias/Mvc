@@ -9,14 +9,14 @@
 namespace Mvc;
 
 
+use Helpers\ModelState;
+
 class Html
 {
     static function text($name, $value, $attr = array())
     {
         $attr = array_merge(
             array(
-                "value" => $value,
-                "name" => $name,
                 "type" => "text"
             ),
             $attr
@@ -29,8 +29,6 @@ class Html
     {
         $attr = array_merge(
             array(
-                "value" => $value,
-                "name" => $name,
                 "type" => "password"
             ),
             $attr
@@ -88,26 +86,62 @@ class Html
         echo $html;
     }
 
-
-    //TODO::
     static function ValidateSummary()
     {
+        $erros = ModelState::getErrors();
+        if (count($erros) > 0):
+            $html = '<ul class="validate-summary">';
 
+            foreach ($erros as $erro) {
+                $html .= '<li>' . $erro . '</li>';
+            }
+
+            $html .= '</ul>';
+
+            echo $html;
+        endif;
     }
 
-    static function checkBox($name, $value)
+    static function checkBox($name, $bit, $attr = array())
     {
+        if ($bit == "true")
+            $attr["checked"] = "true";
 
+        $attr = array_merge(
+            array(
+                "type" => "checkbox",
+            ),
+            $attr
+        );
+
+        self::input($name, 'true', $attr);
     }
 
-    static function radioButton($name, $value)
+    static function radioButton($name, $selectValue, $value, $attr = array())
     {
+        if ($selectValue == $value)
+            $attr["checked"] = "true";
 
+        $attr = array_merge(
+            array(
+                "type" => "radio",
+            ),
+            $attr
+        );
+
+        self::input($name, $value, $attr);
     }
 
-    static function hidden($name, $value)
+    static function hidden($name, $value, $attr = array())
     {
+        $attr = array_merge(
+            array(
+                "type" => "hidden"
+            ),
+            $attr
+        );
 
+        self::input($name, $value, $attr);
     }
 
     /**
@@ -115,15 +149,35 @@ class Html
      */
     static function write($value)
     {
-
+        echo nl2br(stripslashes($value));
     }
 
     static function textArea($name, $value, $attr = array())
     {
+        $html = "<textarea ";
 
+        $attr = array_merge(
+            array(
+                "name" => $name
+            ),
+            $attr
+        );
+
+        $html .= self::getAttributes($attr);
+        $html .= ">" . $value . '</textarea>';
+
+        echo $html;
     }
 
-    static function file($name,$value,$attr = array()){
-        
+    static function file($name, $value, $attr = array())
+    {
+        $attr = array_merge(
+            array(
+                "type" => "file"
+            ),
+            $attr
+        );
+
+        self::input($name, $value, $attr);
     }
 }
