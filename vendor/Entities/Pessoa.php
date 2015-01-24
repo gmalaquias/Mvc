@@ -27,6 +27,7 @@ class Pessoa{
     /**
      * @Name: Email
      * @Type: varchar(60)
+     * @Email
      */
     var $Email;
 
@@ -83,6 +84,4 @@ class Pessoa{
      * @Type: tinyint(1)
      */
     var $Apagado = false;
-
-
 }
