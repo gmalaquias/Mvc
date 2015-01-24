@@ -63,6 +63,7 @@ class UnitOfWork extends Database {
      * @return string
      */
     function Insert($model){
+
         $this->OpenTransaction();
 
         $data = clone $model;
@@ -70,10 +71,12 @@ class UnitOfWork extends Database {
         $table = $this->getTableName($data);
 
         //verifico se é um objeto
-        if (is_object($model))
-            ModelState::RemoveNotMapped($data);
+        if (is_object($data))
+            ModelState::ModelTreatment($data);
 
         $data = (array)$data;
+
+
         // Ordena
         ksort($data);
 
@@ -91,7 +94,7 @@ class UnitOfWork extends Database {
             $tipo = (is_int($value)) ? \PDO::PARAM_INT : \PDO::PARAM_STR;
 
             // Define o dado
-            $sth->bindValue(":$key", trim($value), $tipo);
+            $sth->bindValue(":$key", $value, $tipo);
         }
 
         // Executa
@@ -117,7 +120,7 @@ class UnitOfWork extends Database {
         $data = clone $model;
 
         if (is_object($data))
-            ModelState::RemoveNotMapped($data);
+            ModelState::ModelTreatment($data);
 
         $primaryKey = ModelState::GetPrimary($model);
         if($primaryKey == null)
@@ -147,7 +150,7 @@ class UnitOfWork extends Database {
             $tipo = (is_int($model->$key)) ? \PDO::PARAM_INT : \PDO::PARAM_STR;
 
             // Define o dado
-            $sth->bindValue(":$key", trim($model->$key), $tipo);
+            $sth->bindValue(":$key",$model->$key, $tipo);
         }
 
         try {
