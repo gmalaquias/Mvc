@@ -87,7 +87,7 @@ class Database extends PDO
     public function ExecuteInsert($table, $data)
     {
             if (is_object($data))
-                ModelState::RemoveNotMapped($data);
+                ModelState::ModelTreatment($data);
 
             $data = (array)$data;
 
@@ -120,7 +120,7 @@ class Database extends PDO
     public function ExecuteUpdate($table, $data, $where)
     {
         if (is_object($data))
-            ModelState::RemoveNotMapped($data);
+            ModelState::ModelTreatment($data);
 
         $data = (array)$data;
         // Ordena

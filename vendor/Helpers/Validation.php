@@ -9,7 +9,7 @@ class Validation
 {
     static function Required($var)
     {
-        if (trim($var) == '')
+        if (trim($var) == '' || $var == null)
             return false;
         return true;
     }
