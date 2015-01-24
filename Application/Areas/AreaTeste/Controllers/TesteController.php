@@ -9,12 +9,17 @@
 namespace Areas\AreaTeste\Controllers;
 
 use Mvc\Controller;
+use Mvc\Url;
 
 class TesteController extends Controller{
 
     public function Index(){
         echo 'Agora';
         $this->View();
+    }
+
+    public function Teste(){
+        echo 'ok';
     }
 
 
