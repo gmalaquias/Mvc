@@ -21,6 +21,7 @@ class Pessoa{
      * @Name: Nome
      * @Type: varchar(60)
      * @Required
+     * @Length: 5,100
      */
     var $Nome;
 
@@ -28,6 +29,7 @@ class Pessoa{
      * @Name: Email
      * @Type: varchar(60)
      * @Email
+     * @Required
      */
     var $Email;
 

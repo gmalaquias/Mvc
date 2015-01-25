@@ -50,8 +50,6 @@ class ModelState
                 if (array_key_exists("Type", $data) && StringHelper::Contains($data["Type"], "tinyint"))
                     $model->$campo = ($model->$campo != "true" && $model->$campo != "1") ? "0" : "1";
             }
-
-
         endforeach;
     }
 

@@ -15,8 +15,13 @@ use Helpers\Validation;
 abstract class Email implements iValidator {
 
     public static function isValid(Attributes $object){
-        if(!Validation::Email($object->_value))
-            ModelState::addError("O campo " . $object->_displayName . " deve ser um e-mail.");
+        if(array_key_exists('Required',$object->_allOptions)) {
+            if (!Validation::Email($object->_value))
+                ModelState::addError("O campo " . $object->_displayName . " deve ser um e-mail.");
+        }else{
+            if (!Validation::Email($object->_value) && $object->_value != '')
+                ModelState::addError("O campo " . $object->_displayName . " deve ser um e-mail.");
+        }
     }
 
 } 

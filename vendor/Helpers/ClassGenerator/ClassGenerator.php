@@ -72,26 +72,28 @@ class ClassGenerator extends Model
 
         $fields = $this->db->Select($consulta, '', true);
 
-        foreach ($fields as $field):
-            //Marca a Primary Key
-            if ($field->Tipo == "PRIMARY") {
-                $k = array_search($field->NomeColuna, $this->fields);
-                $this->fields[$k][] = "PRIMARY";
-            } else {
-                //Pega as relações
-                $table = $field->TabelaReferencia;
-                $i = 1;
-                //verifica o nome
+        if(is_array($fields) || is_object($fields)) {
+            foreach ($fields as $field):
+                //Marca a Primary Key
+                if ($field->Tipo == "PRIMARY") {
+                    $k = array_search($field->NomeColuna, $this->fields);
+                    $this->fields[$k][] = "PRIMARY";
+                } else {
+                    //Pega as relações
+                    $table = $field->TabelaReferencia;
+                    $i = 1;
+                    //verifica o nome
 
-                $tabelatmp = $table;
-                while (in_array($table, $this->verify)) {
-                    $table = $tabelatmp . $i;
-                    $i++;
+                    $tabelatmp = $table;
+                    while (in_array($table, $this->verify)) {
+                        $table = $tabelatmp . $i;
+                        $i++;
+                    }
+                    $this->verify[] = $table;
+                    $this->fields[] = array($table, $field->NomeColuna, $field->TabelaReferencia);
                 }
-                $this->verify[] = $table;
-                $this->fields[] = array($table, $field->NomeColuna, $field->TabelaReferencia);
-            }
-        endforeach;
+            endforeach;
+        }
     }
 
     private function generateClass($table)
