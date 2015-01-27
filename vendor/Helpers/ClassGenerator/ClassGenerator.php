@@ -22,10 +22,10 @@ class ClassGenerator extends Model
 
     public function run()
     {
-        if (!is_dir(VENDOR . "Entities"))
-            @mkdir(VENDOR . "Entities");
-        if (!is_dir(VENDOR . "Entities" . DS . "Generator"))
-            @mkdir(VENDOR . "Entities" . DS . "Generator");
+        if (!is_dir(APP . "Entities"))
+            @mkdir(APP . "Entities");
+        if (!is_dir(APP . "Entities" . DS . "Generator"))
+            @mkdir(APP . "Entities" . DS . "Generator");
 
         $this->getTables();
     }
@@ -154,7 +154,8 @@ class ClassGenerator extends Model
         $template->set('date', date("d/m/Y H:i:s"));
         $template->set('C', ucfirst($table));
         $template->set('vars', $vars);
-        $template->write(VENDOR . 'Entities/Generator/' . ucfirst($table) . '.php');
+        $template->set('namespace', FOLDER_SRC);
+        $template->write(APP . 'Entities/Generator/' . ucfirst($table) . '.php');
     }
 
 } 

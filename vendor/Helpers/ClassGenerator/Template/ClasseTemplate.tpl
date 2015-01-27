@@ -6,7 +6,7 @@
 * @date: ${date}
 */
 
-namespace Entities;
+namespace ${namespace}\Entities;
 
 class ${C}{
     ${vars}

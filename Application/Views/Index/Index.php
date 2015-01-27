@@ -1,11 +1,39 @@
 <form action="" method="post" enctype="multipart/form-data">
-    <input type="text" name="Nome" value="<?=$model->Nome;?>"/>
-    <input type="file" name="ads" />
-    <input type="file" name="upload" />
+    <?php
+    use Mvc\Html;
+    Html::ValidateSummary();
+
+    Html::text('Nome',$model->Nome);
+    Html::text('Email',$model->Email);
+
+    ?>
+
+
+
+
+
+    <?php  Html::checkBox("Apagado",$model->Apagado); ?>
+
+    <?php  Html::checkBox("TipoPessoaFisica",$model->TipoPessoaFisica); ?>
+
+
+
+
+
+
+
+
+    <br/>
+    <br/>
+
+
     <input type="submit"/>
 </form>
 
 
-<?php
 
+
+<?php
+ var_dump($model);
 ?>
+

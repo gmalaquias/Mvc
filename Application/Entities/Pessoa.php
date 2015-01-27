@@ -6,7 +6,7 @@
  * @date: 19/01/2015 14:10:56
  */
 
-namespace Entities;
+namespace Application\Entities;
 
 class Pessoa{
     /**

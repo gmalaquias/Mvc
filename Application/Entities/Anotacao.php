@@ -6,7 +6,7 @@
  * @date: 19/01/2015 14:10:55
  */
 
-namespace Entities;
+namespace Application\Entities;
 
 class Anotacao{
     /**

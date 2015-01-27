@@ -6,7 +6,7 @@
             "Areas\\": "Application",
             "Models": "Application",
             "Helpers": "vendor",
-            "Entities": "vendor",
+            "Entities": "Application",
             "UnitOfWork": "vendor"
         }
     },

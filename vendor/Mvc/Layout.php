@@ -22,7 +22,7 @@ class Layout
 
     private static $favicon = DEFAULT_FAVICON;
 
-    private static $outerTags = Default_TAGS;
+    private static $outerTags = DEFAULT_TAGS;
 
     public static function render($content = null, $arquivo = null){
         self::$content = $content;

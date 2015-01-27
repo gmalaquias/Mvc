@@ -97,7 +97,7 @@ define("DEFAULT_LAYOUT", "basic");
 define("DEFAULT_TITLE","Alcatraz");
 define("DEFAULT_FAVICON","");
 define("DEFAULT_DESC","");
-define("Default_TAGS","");
+define("DEFAULT_TAGS","");
 
 
 /**
