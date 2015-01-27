@@ -216,4 +216,4 @@ pip-log.txt
 .idea/*
 vendor/phpmailer/*
 .idea/scopes/scope_settings.xml
-vendor/Entities/Generator/*
+Application/Entities/Generator/*
