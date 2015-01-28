@@ -8,6 +8,12 @@
 
 date_default_timezone_set('America/Sao_Paulo');
 
+
+/**
+ * NAO REMOVER NENHUM CAMPO DESTE ARQUIVO, SE NECESSARIO APENAS FAZER ALTERAÇÕES
+ */
+
+
 /**
  * DEFAULT para PATH
  */

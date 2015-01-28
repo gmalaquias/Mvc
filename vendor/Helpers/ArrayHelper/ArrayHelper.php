@@ -73,21 +73,8 @@ class ArrayHelper {
         return $this->type;
     }
 
-    private function setType($element){
-        if(is_object($element) && ($this->type == get_class($element) || count($this->array) == 0)) {
-            $this->type = get_class($element);
-            return true;
-        }
-
-        throw new \Exception("Tipo de objeto inválido");
-    }
-
     public function getArray(){
         return $this->array;
-    }
-
-    public function Reorganize(){
-        $this->array = array_values($this->array);
     }
 
     public function for_each($for){
@@ -96,5 +83,18 @@ class ArrayHelper {
             $for($key,$element);
 
         return $this;
+    }
+
+    private function Reorganize(){
+        $this->array = array_values($this->array);
+    }
+
+    private function setType($element){
+        if(is_object($element) && ($this->type == get_class($element) || count($this->array) == 0)) {
+            $this->type = get_class($element);
+            return true;
+        }
+
+        throw new \Exception("Tipo de objeto inválido");
     }
 }
