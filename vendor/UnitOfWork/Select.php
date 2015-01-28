@@ -9,6 +9,7 @@
 namespace UnitOfWork;
 
 
+use Helpers\ModelState;
 use Mvc\Database;
 
 class Select {
@@ -124,7 +125,8 @@ class Select {
         $classe = NAMESPACE_ENTITIES . $this->type;
         $query = $this->getQuery();
 
-        return $this->db->select($query,(class_exists ($classe) && !$this->getUnique ? $classe : ''),$all);
+        $result = $this->db->select($query,(class_exists ($classe) && !$this->getUnique ? $classe : ''),$all);
+        return $this->ExecutePersist($result, $all);
     }
 
     private function getQuery(){
@@ -141,5 +143,41 @@ class Select {
         return $query;
     }
 
+    private function ExecutePersist($result, $all){
+        if($this->persist == null || $result == null)
+            return $result;
 
+        $persist = explode(",",$this->persist);
+
+        $obj = NAMESPACE_ENTITIES . $this->type;
+        $obj = new $obj;
+
+        $virtuals = ModelState::GetVirtuals($obj);
+
+        foreach($persist as $key => $value){
+            if(!array_key_exists("_".$value,$virtuals))
+                unset($persist[$key]);
+        }
+
+        if(is_object($result))
+            $result = array($result);
+
+        $count = count($result);
+        for ($i=0;$i<$count;$i++) {
+            foreach ($persist as $k => $p) {
+                $p = "_".$p;
+                $table = $virtuals[$p]["Type"];
+                $fk = $virtuals[$p]["Fk"];
+
+                $query = "SELECT * FROM " . $table . " WHERE " . $fk . " = " . $result[$i]->$fk;
+
+                $result[$i]->$p = $this->db->select($query, NAMESPACE_ENTITIES . $table);
+            }
+        }
+
+        if($count == 1 && $all == false)
+            return $result[0];
+
+        return $result;
+    }
 } 

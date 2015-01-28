@@ -8,8 +8,6 @@
 
 namespace Helpers\ArrayHelper;
 
-
-
 use Helpers\StringHelper;
 
 class ArrayHelper {

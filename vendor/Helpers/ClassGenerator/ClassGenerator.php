@@ -140,6 +140,7 @@ class ClassGenerator extends Model
                     if ($l[0] != '') {
                         $vars .= "\n/**
                          * @NotMapped
+                         * @Virtual
                          * @Name: _" . ucfirst($l[0]) . "
                          * @Fk: " . $l[1] . "
                          * @Type: " . ucfirst($l[2]) . "
@@ -154,7 +155,6 @@ class ClassGenerator extends Model
         $template->set('date', date("d/m/Y H:i:s"));
         $template->set('C', ucfirst($table));
         $template->set('vars', $vars);
-        $template->set('namespace', FOLDER_SRC);
         $template->write(APP . 'Entities/Generator/' . ucfirst($table) . '.php');
     }
 

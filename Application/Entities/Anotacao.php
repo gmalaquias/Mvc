@@ -6,7 +6,7 @@
  * @date: 19/01/2015 14:10:55
  */
 
-namespace Application\Entities;
+namespace Entities;
 
 class Anotacao{
     /**
@@ -69,6 +69,7 @@ class Anotacao{
      * @Name: _Pessoa
      * @Fk: PessoaId
      * @Type: Pessoa
+     * @Virtual
      */
     var $_Pessoa;
 
@@ -77,6 +78,7 @@ class Anotacao{
      * @Name: _Pessoa1
      * @Fk: Pessoa
      * @Type: Pessoa
+     * @Virtual
      */
     var $_Pessoa1;
 

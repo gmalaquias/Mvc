@@ -66,6 +66,23 @@ class ModelState
         return null;
     }
 
+    public static function GetVirtuals($model)
+    {
+        $annotation = new Annotation($model);
+        $get = $annotation->getAnnotations();
+
+        $return = array();
+
+        foreach ($get as $campo => $data):
+            if (array_key_exists("Virtual", $data))
+                $return[$data["Name"]] = array("Type" => $data["Type"],
+                                  "Fk" => $data["Fk"]);
+
+        endforeach;
+
+        return $return;
+    }
+
     public static function ConvertDateBr($model)
     {
         $annotation = new Annotation($model);

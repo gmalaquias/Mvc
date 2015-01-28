@@ -69,7 +69,13 @@ class Annotation {
 
                                     "AllowHtml" => array("getFunction" => false),
 
-                                    "Type" => array("getFunction" => false)
+                                    "Type" => array("getFunction" => false),
+
+                                    "Virtual" => array("getFunction" => false),
+
+                                    "Fk" => array("getFunction" => false),
+
+                                    "Name" => array("getFunction" => false)
                                 );
 
     /**

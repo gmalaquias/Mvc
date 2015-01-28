@@ -27,7 +27,6 @@ class Template{
 	}
 	
 	function write($fileName){
-		//echo $fileName.'<br/>';
 		$fd = fopen ($fileName, "w");
 		fwrite($fd, $this->content);
 		fclose ($fd);
