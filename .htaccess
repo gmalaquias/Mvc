@@ -1,6 +1,10 @@
-Options +FollowSymLinks -MultiViews
-RewriteEngine On
+#Options +FollowSymLinks -MultiViews
+#RewriteEngine On
+#
+#RewriteCond %{REQUEST_URI} !/public/ [NC]
+#
+#RewriteRule ^(.*?)/?$ public/$1 [L,QSA]
 
-RewriteCond %{REQUEST_URI} !/public/ [NC]
 
-RewriteRule ^(.*?)/?$ public/$1 [L,QSA]
+RewriteEngine on
+RewriteRule ^(.*) public/$1 [L]
