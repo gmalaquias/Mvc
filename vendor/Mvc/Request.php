@@ -53,11 +53,11 @@ class Request
     }
     
     public static function getArea(){
-        return self::$_area;
+        return ucfirst(self::$_area);
     }
     
     public static function getAction(){
-        return self::$_action;
+        return ucfirst(self::$_action);
     }
     
     public static function getArgs(){
@@ -65,6 +65,6 @@ class Request
     }
     
     public static function getCompleteController(){
-        return self::$_controller;
+        return ucfirst(self::$_controller);
     }
 }
