@@ -62,9 +62,17 @@ class Router
                 $args = (array)Request::getArgs();
 
                 $post = self::VerificaMetodo($controlador, $action);
-            }else{
-                Layout::render(null,'404');
-                exit();
+            }else if(file_exists(PATH_CONTROLLER . CONTROLLER_404 . '.php')){
+                Request::setController(CONTROLLER_404);
+                Request::setAction(ACTION_404);
+                Request::setArea(null);
+
+                $controlador = NAMESPACE_CONTROLLER . '\\' . CONTROLLER_404;
+                $controlador = new $controlador();
+                $action = ACTION_404;
+                //Transforma o resto da URL em Array
+                $args = (array)Request::getArgs();
+                $post = self::VerificaMetodo($controlador, $action);
             }
         }
 
@@ -92,7 +100,7 @@ class Router
     {
         if (!isset($_POST) OR count($_POST) == 0) {
             if (!method_exists($controller, $action)) {
-                Layout::render(null,'404');
+                Url::RedirectTo(ACTION_404,CONTROLLER_404);
                 exit();
             }
 
@@ -103,8 +111,7 @@ class Router
         if(!method_exists($controller, $action.$addPost)) {
             $addPost = null;
             if (!method_exists($controller, $action)) {
-                Layout::render(null, '404');
-                exit();
+               Url::RedirectTo(ACTION_404,CONTROLLER_404);
             }
         }
 

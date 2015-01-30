@@ -10,7 +10,6 @@ try {
     \Mvc\Router::run();
 }catch (\Exception $e){
    echo $e;
-   //\Mvc\Layout::render($e->getMessage(),'500'); TODO: Colocar redirect
 }
 
 echo '<br>';

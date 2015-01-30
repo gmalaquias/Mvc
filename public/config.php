@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Gabriel
- * Date: 23/11/2014
- * Time: 01:48
- */
-
 date_default_timezone_set('America/Sao_Paulo');
 
 
@@ -115,9 +108,12 @@ define('USE_STANDARD_VALIDATOR', true);
 /**
  * Error
  */
-register_shutdown_function( "error_tratamento" );
+//register_shutdown_function( "error_tratamento" );
 
-error_reporting(0);
+define('CONTROLLER_404','ErrosController');
+define('ACTION_404','Erro404');
+
+error_reporting(1);
 
 function error_tratamento() {
     $error = error_get_last();

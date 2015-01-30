@@ -15,10 +15,6 @@ class Request
     private static $_action = DEFAULT_VIEW;
     private static $_args = array();
 
-    /**
-     * @access public
-     * @return void
-     */
     public static function run()
     {
         if( !isset($_GET["url"]) ) return false;
@@ -66,5 +62,20 @@ class Request
     
     public static function getCompleteController(){
         return ucfirst(self::$_controller);
+    }
+
+    public static function setArea($area)
+    {
+        self::$_area = $area;
+    }
+
+    public static function setController($controller)
+    {
+        self::$_controller = $controller;
+    }
+
+    public static function setAction($action)
+    {
+        self::$_action = $action;
     }
 }
