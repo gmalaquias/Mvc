@@ -78,7 +78,7 @@ class Controller
             return PATH_VIEWS . Request::getController() . DS . ($folder != null ? $folder . DS : "") . Request::getAction() . ".php";
 
         //dentro das areas
-        return PATH_AREA . Request::getArea() . 'Views' . DS . Request::getController() . DS . ($folder != null ? $folder . DS : "") . Request::getAction() . ".php";
+        return PATH_AREA . Request::getArea() . DS . 'Views' . DS . Request::getController() . DS . ($folder != null ? $folder . DS : "") . Request::getAction() . ".php";
     }
 
     /**

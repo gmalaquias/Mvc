@@ -36,7 +36,7 @@ class Url {
     static function getUrl($action,$controller = null,$area = null){
         if($controller == null)
             $controller = Request::getController();
-        if($area == null)
+        if($area == null && $controller != CONTROLLER_404)
             $area = Request::getArea();
 
         $url = URL;
