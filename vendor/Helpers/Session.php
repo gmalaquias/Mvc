@@ -21,8 +21,8 @@ class Session{
 
     public static function start(){
         if(!isset($_SESSION)){
-            session_set_cookie_params(0, '/', '.'.URL);
-            session_name('mysessionname');
+            /*session_set_cookie_params(0, '/', '.'.URL);
+            session_name('mysessionname');*/
             session_start();
             self::$session_id = session_id();
         }
