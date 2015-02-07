@@ -51,7 +51,13 @@ class Attributes {
      */
     public $_allOptions;
 
-    public function __construct($name, $displayName, $value, $annotation, $arg, $options, $model, $allOptions ){
+
+    /**
+     * Campo que informa se é obrigatorio ou não
+     */
+    public $_required;
+
+    public function __construct($name, $displayName, $value, $annotation, $arg, $options, $model, $required, $allOptions ){
         $this->_name        = $name;
         $this->_displayName = $displayName;
         $this->_value       = $value;
@@ -59,7 +65,8 @@ class Attributes {
         $this->_arg         = $arg;
         $this->_options     = $options;
         $this->_model       = $model;
-        $this->_allOptions   = $allOptions;
+        $this->_allOptions  = $allOptions;
+        $this->_required    = $required;
 
         $this->callFunction();
     }

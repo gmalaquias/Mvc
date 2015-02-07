@@ -115,6 +115,7 @@ class ModelState
                         $attr,
                         $valor, $attributes[$attr],
                         $model,
+                        array_key_exists("Required",$attributes[$attr]),
                         $options
                     );
             endforeach;
@@ -127,6 +128,7 @@ class ModelState
                     "Standard",
                     $valor, $attributes[$attr],
                     $model,
+                    true,
                     $options
                 );
 

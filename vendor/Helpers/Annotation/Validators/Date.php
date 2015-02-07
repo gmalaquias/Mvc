@@ -16,7 +16,7 @@ abstract class Date implements iValidator {
 
     public static function isValid(Attributes $object){
         if(!Validation::Date($object->_value))
-            ModelState::addError("O campo " . $object->_name . " deve ser uma data.");
+            ModelState::addError("O campo " . $object->_displayName . " deve ser uma data.");
     }
 
 } 
