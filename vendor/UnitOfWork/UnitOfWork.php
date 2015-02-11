@@ -115,8 +115,10 @@ class UnitOfWork extends Database {
      * @param $model Objeto que contem os dados
      * @param $campos Seleciona os campos que quer atulizar passando por array, caso seja nulo serão atualizados todos os campos
      */
-    public function Update($model, $campos = null)
+    public function Update($model, array $campos = null)
     {
+        $this->OpenTransaction();
+        
         $data = clone $model;
 
         if (is_object($data))
