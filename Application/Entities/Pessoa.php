@@ -86,4 +86,14 @@ class Pessoa{
      * @Type: tinyint(1)
      */
     var $Apagado = false;
+
+
+    /**
+     * @NotMapped
+     * @Name: _Pessoa
+     * @Fk: PessoaId
+     * @Type: Anotacao
+     * @Virtual
+     */
+    var $_Anotacoes;
 }

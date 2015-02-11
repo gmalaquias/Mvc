@@ -169,9 +169,9 @@ class Select {
                 $table = $virtuals[$p]["Type"];
                 $fk = $virtuals[$p]["Fk"];
 
-                $query = "SELECT * FROM " . $table . " WHERE " . $fk . " = " . $result[$i]->$fk;
 
-                $result[$i]->$p = $this->db->select($query, NAMESPACE_ENTITIES . $table);
+                $unitofwork = new UnitOfWork();
+                $result[$i]->$p  = $unitofwork->Get($table, $fk . " = " . $result[$i]->$fk)->ToList();
             }
         }
 
