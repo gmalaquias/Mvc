@@ -120,7 +120,7 @@ class Select
         return $this;
     }
 
-    function Select($select)
+    function Select($select, $novaClasse = "")
     {
         $this->select = $select;
         if ($select != '*' AND count(explode(',', $select)) == 1)
@@ -128,9 +128,14 @@ class Select
         return $this;
     }
 
-    function Join($join)
+    function Join(Select $join, $on, $on2)
     {
+        var_dump($join);
+
+        return $this;
     }
+
+    function LeftJoin(Select $join, $on, $on2){}
 
     private function ExecuteQuery($all = true)
     {
