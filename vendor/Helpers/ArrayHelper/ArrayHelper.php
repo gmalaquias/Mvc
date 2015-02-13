@@ -19,6 +19,7 @@ class ArrayHelper {
     public function __construct(array $array = array()){
         foreach($array as $element)
             $this->Add($element);
+
     }
 
     public function Add($element){
@@ -94,5 +95,9 @@ class ArrayHelper {
         }
 
         throw new \Exception("Tipo de objeto inválido");
+    }
+
+    public static function getFirstElement(array $array){
+        return $array[0];
     }
 }

@@ -114,13 +114,13 @@ class ClassGenerator extends Model
                  */";
 
                 if ($type == 'timestamp')
-                    $vars .= "\n var $" . $l[0] . " = CURRENT_TIMESTAMP;\n";
+                    $vars .= "\n public $" . $l[0] . " = CURRENT_TIMESTAMP;\n";
                 else if ($type == 'tinyint(1)')
-                    $vars .= "\n var $" . $l[0] . " = false;\n";
+                    $vars .= "\n public $" . $l[0] . " = false;\n";
                 else if (StringHelper::Contains($type, 'int'))
-                    $vars .= "\n var $" . $l[0] . " = 0;\n";
+                    $vars .= "\n public $" . $l[0] . " = 0;\n";
                 else
-                    $vars .= "\n var $" . $l[0] . ";\n";
+                    $vars .= "\n public $" . $l[0] . ";\n";
 
             } else {
                 if ($l[2] == "PRIMARY") {
@@ -134,7 +134,7 @@ class ClassGenerator extends Model
                      * @Name: " . $l[0] . "
                      * @Type: " . $type . "
                      */";
-                    $vars .= "\n var \$" . $l[0] . " = 0;\n";
+                    $vars .= "\n public \$" . $l[0] . " = 0;\n";
 
                 } else {
                     if ($l[0] != '') {
@@ -145,7 +145,7 @@ class ClassGenerator extends Model
                          * @Fk: " . $l[1] . "
                          * @Type: " . ucfirst($l[2]) . "
                          */";
-                        $vars .= "\n var \$_" . ucfirst($l[0]) . ";\n";
+                        $vars .= "\n public \$_" . ucfirst($l[0]) . ";\n";
                     }
                 }
             }

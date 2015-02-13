@@ -9,18 +9,13 @@
 namespace UnitOfWork;
 
 
+use Helpers\ArrayHelper\ArrayHelper;
 use Helpers\ModelState;
+use Helpers\StringHelper;
 use Mvc\Database;
 
 class Select
 {
-
-    /**
-     * Usada para montar a query que sera executada
-     * @var String
-     */
-    public $query;
-
     /**
      * Guarda a seção de db do UnitOfWork
      */
@@ -33,10 +28,9 @@ class Select
     public $persist;
 
     /**
-     * Verifica se ja foi chamado o metodo OrderBy ou OrderByDescending
-     * @var bool
+     * Guarda os valores de orderby da query
      */
-    private $order = false;
+    private $orderby = null;
 
     /**
      * Guarda o tipo da classe que esta sendo buscado
@@ -65,90 +59,215 @@ class Select
      */
     private $getUnique = false;
 
-    function __construct($type, $query, $persist, $db)
+    /**
+     * Guarda o where para a query
+     */
+    public $where = null;
+
+    /**
+     * Guarda os joins
+     */
+    public $join = null;
+
+    /**
+     * alias da tabela principal
+     */
+    public $as;
+
+    /**
+     * Classe de retorno do join
+     */
+    public $classe = null;
+
+    /**
+     * Guarda o groupby da query
+     */
+    public $groupby;
+
+    /**
+     * Guarda a opção DISTINCT do mysql
+     */
+    public $distinct;
+
+    /**
+     * Guarda o having da query
+     */
+    public $having = null;
+
+    public function __construct($type, $where, $persist, $db)
     {
         $this->type = $type;
-        $this->query = $query;
         $this->persist = $persist;
         $this->db = $db;
+        $this->where = $where;
     }
 
-    function FirstOrDefault()
+    public function FirstOrDefault()
     {
         $this->limit = 1;
         return $this->ExecuteQuery(false);
     }
 
-    function ToList()
+    public function ToList()
     {
         return $this->ExecuteQuery(true);
     }
 
-    function OrderBy($campo)
+    public function OrderBy($campo)
     {
-        if ($this->order)
-            $this->query = $this->query . ", " . $campo;
+        if ($this->orderby != null)
+            $this->orderby .= ", " . $campo;
         else
-            $this->query = $this->query . " ORDER BY " . $campo;
+            $this->orderby .= " ORDER BY " . $campo;
 
-        $this->order = true;
         return $this;
     }
 
-    function OrderByDescending($campo)
+    public function OrderByDescending($campo)
     {
-        if ($this->order)
-            $this->query = $this->query . ", " . $campo . " DESC";
+        if ($this->orderby != null)
+            $this->orderby .= ", " . $campo . " DESC";
         else
-            $this->query = $this->query . " ORDER BY " . $campo . " DESC";
+            $this->orderby .= " ORDER BY " . $campo . " DESC";
 
-        $this->order = true;
         return $this;
     }
 
-    function Take($take)
+    public function Take($take)
     {
         if (is_numeric($take))
             $this->limit = $take;
         return $this;
     }
 
-    function Skip($skip)
+    public function Skip($skip)
     {
         if (is_numeric($skip))
             $this->skip = $skip;
         return $this;
     }
 
-    function Select($select, $novaClasse = "")
+    public function Select($select, $novaClasse = null)
     {
+        $this->classe = $novaClasse;
         $this->select = $select;
         if ($select != '*' AND count(explode(',', $select)) == 1)
             $this->getUnique = true;
+
         return $this;
     }
 
-    function Join(Select $join, $on, $on2)
+    public function Join($join, $on, $on2)
     {
-        var_dump($join);
+        $this->BuildJoin("INNER", $join,$on,$on2);
 
         return $this;
     }
 
-    function LeftJoin(Select $join, $on, $on2){}
+    public function LeftJoin($join, $on, $on2){
+        $this->BuildJoin("LEFT", $join,$on,$on2);
+
+        return $this;
+    }
+
+    public function Where($where){
+        if($this->where == null)
+            $this->where = $where;
+        else
+            $this->where .= " AND (".$where.")";
+
+        return $this;
+    }
+
+    public function GroupBy($fields){
+        if ($this->groupby != null)
+            $this->groupby .= ", " . $fields;
+        else
+            $this->groupby .= " GROUP BY " . $fields;
+
+        return $this;
+    }
+
+    public function Sum($field){
+        $this->Select("SUM(" . $field . ") as SUM".$field);
+
+        return $this;
+    }
+
+    public function AVG($field){
+        $this->Select("AVG(" . $field . ") as Avg".$field);
+
+        return $this;
+    }
+
+    public function Having($having){
+        if($this->having == null)
+            $this->having = $having;
+        else
+            $this->having .= " AND (".$having.")";
+
+        return $this;
+    }
+
+    public function Distinct(){
+        $this->distinct = " DISTINCT ";
+        return $this;
+    }
+
+    public function Count(){
+        $this->Select("COUNT(*) as Count");
+
+        return $this;
+    }
+
+    private function getClass(){
+
+        if($this->join != null){
+            if($this->classe != null)
+                return is_object($this->classe) ? get_class($this->classe) : (StringHelper::Contains($this->classe, NAMESPACE_ENTITIES) ? $this->classe : NAMESPACE_ENTITIES . $this->classe);
+            else
+                return '';
+        }
+
+        return NAMESPACE_ENTITIES . $this->type;
+    }
+
+    private function BuildJoin($type, $join, $on, $on2){
+        if($this->join == null && StringHelper::Contains($on,"."))
+            $this->as = " AS ". ArrayHelper::getFirstElement(explode(".", $on));
+
+        $as = "";
+        if(StringHelper::Contains($on2,"."))
+            $as = " AS " . ArrayHelper::getFirstElement(explode(".", $on2));
+
+        if($join instanceof Select) {
+            $this->join .= " " . $type . " JOIN " . $join->type . $as . " ON " . $on . " = " . $on2;
+            $this->Where($join->where);
+        }
+        else if(is_string($join)){
+            $this->join .= " " .$type . " JOIN " . $join . $as . " ON " . $on . " = " . $on2;
+        }else
+            throw new UnitOfWorkException("Tipo não válido");
+    }
 
     private function ExecuteQuery($all = true)
     {
-        $classe = NAMESPACE_ENTITIES . $this->type;
+        $classe = $this->getClass();
+
         $query = $this->getQuery();
 
         $result = $this->db->select($query, (class_exists($classe) && !$this->getUnique ? $classe : ''), $all);
+
         return $this->ExecutePersist($result, $all);
     }
 
     private function getQuery()
     {
-        $query = $this->query;
+        $query = "SELECT " . $this->distinct . $this->select . " FROM " . $this->type . $this->as . $this->join .
+            (!empty($this->where) ? " WHERE " . $this->where : "") .
+            $this->groupby .
+            (!empty($this->having) ? " HAVING " . $this->having : "");
+
         if ($this->limit != null && $this->skip != null)
             $query .= " LIMIT " . $this->skip . ',' . $this->limit;
         else if ($this->skip == null && $this->limit != null)
@@ -156,7 +275,9 @@ class Select
         else if ($this->skip != null && $this->limit == null)
             $query .= " LIMIT " . $this->skip . ', 10000000000';
 
-        $query = str_replace('*', $this->select, $query);
+
+        $query .= $this->orderby;
+
 
         return $query;
     }

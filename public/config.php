@@ -113,18 +113,18 @@ define('USE_STANDARD_VALIDATOR', true);
 define('CONTROLLER_404','ErrosController');
 define('ACTION_404','Erro404');
 
-error_reporting(1);
+//error_reporting(1);
 
-function error_tratamento() {
-    $error = error_get_last();
-    if( $error !== NULL) {
-        $errno   = $error["type"];
-        $errfile = $error["file"];
-        $errline = $error["line"];
-        $errstr  = $error["message"];
-
-
-
-        var_dump($error);
-    }
-}
+//function error_tratamento() {
+//    $error = error_get_last();
+//    if( $error !== NULL) {
+//        $errno   = $error["type"];
+//        $errfile = $error["file"];
+//        $errline = $error["line"];
+//        $errstr  = $error["message"];
+//
+//
+//
+//        var_dump($error);
+//    }
+//}
