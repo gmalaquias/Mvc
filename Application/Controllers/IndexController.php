@@ -4,6 +4,8 @@ namespace Controllers;
 use Entities\Anotacao;
 use Entities\Pessoa;
 use Helpers\ClassGenerator\ClassGenerator;
+use Helpers\Cookie;
+use Helpers\DateTime;
 use Helpers\EmailHelper;
 use Helpers\ModelState;
 use Mvc\Controller;
@@ -16,23 +18,30 @@ class IndexController extends Controller
 {
     public function Index()
     {
-        $model = new Pessoa();
+        $cookie = new Cookie('Alcatraz');
+        $cookie->set("Nome","inome");
 
-        $this->View(null, $model);
+        $uni = new UnitOfWork();
+        var_dump($uni->Get("Anotacao")
+            ->Join($uni->Get("Pessoa") ,"A.PessoaId", "P.PessoaId")
+                ->Select("P.PessoaId")
+                ->Distinct()
+                ->ToList()
+        );
+
     }
 
     public function Index_post(Pessoa $model, $arquivo = null)
     {
         try {
             if (ModelState::isValid()) {
-//                $unitof = new UnitOfWork();
-//                $unitof->Insert($model);
-//                $unitof->Save();
 
-                echo "Salvo";
+                $unitof = new UnitOfWork();
+                $unitof->Insert($model);
+                $unitof->Save();
             }
         } catch (\Exception $e) {
-            ModelState::addError($e->getMessage());
+           echo $e;
         }
 
         $this->View(null, $model);

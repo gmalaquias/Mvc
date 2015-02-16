@@ -102,7 +102,7 @@ class Html
         endif;
     }
 
-    static function checkBox($name, $bit, $attr = array())
+    static function checkBox($name, $bit, $attr = array(), $val = true)
     {
         if ($bit == "true")
             $attr["checked"] = "true";
@@ -114,7 +114,7 @@ class Html
             $attr
         );
 
-        self::input($name, 'true', $attr);
+        self::input($name, $val, $attr);
     }
 
     static function radioButton($name, $selectValue, $value, $attr = array())

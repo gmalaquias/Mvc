@@ -150,8 +150,9 @@ class Select
     public function Select($select, $novaClasse = null)
     {
         $this->classe = $novaClasse;
+
         $this->select = $select;
-        if ($select != '*' AND count(explode(',', $select)) == 1)
+        if ($select != '*' AND count(explode(',', $select)) == 1 AND empty($novaClasse))
             $this->getUnique = true;
 
         return $this;
@@ -241,7 +242,13 @@ class Select
             $as = " AS " . ArrayHelper::getFirstElement(explode(".", $on2));
 
         if($join instanceof Select) {
-            $this->join .= " " . $type . " JOIN " . $join->type . $as . " ON " . $on . " = " . $on2;
+            if($join->join != null){
+                $this->join .= " " . $type . " JOIN ( ";
+                $this->join .= " " . $join->getQuery();
+                $this->join .= ")" . $as . " ON " . $on . " = " . $on2;
+            }else {
+                $this->join .= " " . $type . " JOIN " . $join->type . $as . " ON " . $on . " = " . $on2;
+            }
             $this->Where($join->where);
         }
         else if(is_string($join)){
@@ -255,6 +262,8 @@ class Select
         $classe = $this->getClass();
 
         $query = $this->getQuery();
+
+        echo $query;
 
         $result = $this->db->select($query, (class_exists($classe) && !$this->getUnique ? $classe : ''), $all);
 

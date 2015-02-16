@@ -33,8 +33,7 @@ class UnitOfWork extends Database {
      * @return Select
      */
     function Get($type, $where = null, $persist = null){
-        $get = new Crud($type);
-        return $get->Get($where,$persist,$this);
+        return new Select($type, $where, $persist, $this);
     }
 
     /**

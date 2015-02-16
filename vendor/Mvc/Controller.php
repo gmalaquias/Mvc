@@ -20,7 +20,6 @@ class Controller
      * metodo chamado sempre antes de exibir as paginas
      */
     function __construct(){
-
     }
 
     /**

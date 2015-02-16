@@ -17,7 +17,8 @@ class Url {
         $controller = Request::getController();
         $area = Request::getArea();
 
-        self::RedirectTo($controller,$action,$area);
+
+        self::RedirectTo($action,$controller,$area);
     }
 
     static function RedirectExtern($url){
@@ -58,9 +59,6 @@ class Url {
     private static function Redirect($url){
         header('Location: ' . $url);
     }
-
-
-
 
 
 } 
