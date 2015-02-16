@@ -263,8 +263,6 @@ class Select implements iSelect
 
         $query = $this->getQuery();
 
-        echo $query;
-
         $result = $this->db->select($query, (class_exists($classe) && !$this->getUnique ? $classe : ''), $all);
 
         return $this->ExecutePersist($result, $all);
