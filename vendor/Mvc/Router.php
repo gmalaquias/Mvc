@@ -144,7 +144,7 @@ class Router
                 $count = count($ex);
                 $result = '$model->';
                 for($i =0; $i < $count; $i++)
-                    $result .= '$ex[' . $i . ']' . ($i == $count - 1 ? '= empty($valor) ? null : $valor;' : '->');
+                    $result .= '$ex[' . $i . ']' . ($i == $count - 1 ? '= $valor == "" ? null : $valor;' : '->');
 
                 eval($result);
             endforeach;
