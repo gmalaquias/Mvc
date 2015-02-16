@@ -14,7 +14,7 @@ use Helpers\ModelState;
 use Helpers\StringHelper;
 use Mvc\Database;
 
-class Select
+class Select implements iSelect
 {
     /**
      * Guarda a seção de db do UnitOfWork

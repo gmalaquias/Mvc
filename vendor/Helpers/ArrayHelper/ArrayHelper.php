@@ -9,8 +9,9 @@
 namespace Helpers\ArrayHelper;
 
 use Helpers\StringHelper;
+use UnitOfWork\iSelect;
 
-class ArrayHelper {
+class ArrayHelper implements iSelect{
 
     private $array = array();
 
@@ -84,6 +85,10 @@ class ArrayHelper {
         return $this;
     }
 
+    public static function getFirstElement(array $array){
+        return $array[0];
+    }
+
     private function Reorganize(){
         $this->array = array_values($this->array);
     }
@@ -97,7 +102,80 @@ class ArrayHelper {
         throw new \Exception("Tipo de objeto inválido");
     }
 
-    public static function getFirstElement(array $array){
-        return $array[0];
+
+    //TODO::Implementar
+    public function FirstOrDefault()
+    {
+        // TODO: Implement FirstOrDefault() method.
+    }
+
+    public function ToList()
+    {
+        // TODO: Implement ToList() method.
+    }
+
+    public function OrderBy($campo)
+    {
+        // TODO: Implement OrderBy() method.
+    }
+
+    public function OrderByDescending($campo)
+    {
+        // TODO: Implement OrderByDescending() method.
+    }
+
+    public function Take($take)
+    {
+        // TODO: Implement Take() method.
+    }
+
+    public function Skip($skip)
+    {
+        // TODO: Implement Skip() method.
+    }
+
+    public function Select($select, $novaClasse = null)
+    {
+        // TODO: Implement Select() method.
+    }
+
+    public function Join($join, $on, $on2)
+    {
+        // TODO: Implement Join() method.
+    }
+
+    public function LeftJoin($join, $on, $on2)
+    {
+        // TODO: Implement LeftJoin() method.
+    }
+
+    public function GroupBy($fields)
+    {
+        // TODO: Implement GroupBy() method.
+    }
+
+    public function Sum($field)
+    {
+        // TODO: Implement Sum() method.
+    }
+
+    public function AVG($field)
+    {
+        // TODO: Implement AVG() method.
+    }
+
+    public function Having($having)
+    {
+        // TODO: Implement Having() method.
+    }
+
+    public function Distinct()
+    {
+        // TODO: Implement Distinct() method.
+    }
+
+    public function Count()
+    {
+        // TODO: Implement Count() method.
     }
 }
