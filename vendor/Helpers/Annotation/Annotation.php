@@ -8,6 +8,7 @@
 
 namespace Helpers\Annotation;
 use Helpers\Annotation\Validators\Attributes;
+use Helpers\Cache\Cache;
 use Helpers\ModelState;
 
 /**
@@ -87,7 +88,15 @@ class Annotation {
 
         $this->_reflection = new \ReflectionClass($this->_class);
 
-        $this->getAllAnnotations();
+        $cache = new Cache();
+        $cacheGet = $cache->get(get_class($this->_class));
+
+        if($cacheGet == null) {
+            $this->getAllAnnotations();
+            $cache->set(get_class($this->_class), $this->_annotations, "24 hours");
+        }else{
+            $this->_annotations = $cacheGet;
+        }
     }
 
     /**
@@ -95,6 +104,7 @@ class Annotation {
      */
     private function getAllAnnotations(){
         $properties = $this->_reflection->getProperties();
+
         foreach ($properties as $l) {
             $this->getAnnotationByAttribute($l->name);
         }
