@@ -1,6 +1,13 @@
 {
   "name": "gmalaquias/alcatraz-mvc",
   "description": "The Alcatraz Framework.",
+  "authors": [
+    {
+      "name": "Gabriel Malaquias",
+      "email": "g@gmalaquias.com"
+    }
+  ],
+  "minimum-stability": "dev",
   "keywords": ["framework", "alcatraz", "mvc"],
   "license": "MIT",
   "type": "project",
