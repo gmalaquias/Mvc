@@ -7,8 +7,6 @@
       "email": "g@gmalaquias.com"
     }
   ],
-  "minimum-stability": "dev",
-  "prefer-stable" : true,
   "keywords": ["framework", "alcatraz", "mvc"],
   "license": "MIT",
   "type": "project",
@@ -25,5 +23,8 @@
     },
     "require": {
       "phpmailer/phpmailer": "5.2.9"
+    },
+    "config": {
+      "preferred-install": "dist"
     }
 }
