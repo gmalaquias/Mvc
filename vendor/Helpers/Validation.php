@@ -19,6 +19,7 @@ class Validation
         if (strlen(trim($var)) <= $max && strlen(trim($var)) >= $min)
             return true;
         return false;
+        
     }
 
     static function Number($var)
