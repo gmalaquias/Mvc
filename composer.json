@@ -1,4 +1,9 @@
 {
+  "name": "gmalaquias/alcatraz-mvc",
+  "description": "The Alcatraz Framework.",
+  "keywords": ["framework", "alcatraz", "mvc"],
+  "license": "MIT",
+  "type": "project",
     "autoload": {
         "psr-0": {
             "Mvc\\": "vendor",
