@@ -1,7 +1,12 @@
-Framework Mvc
+# Alcatraz Framework PHP MVC
 
------------------------
+Alcatraz é um framework PHP capaz de agilizar e organizar o desenvolvimento de seu projeto. 
 
-http://gmalaquias.github.io/Mvc/
+## Instalação 
+### Via Composer  [getcomposer.org] [1]
 
-Ao fazer o download rodar o composer install para instalar os componentes externos
+```sh
+composer create-project gmalaquias/alcatraz-mvc
+```
+
+[1]:http://getcomposer.org/
