@@ -2,3 +2,4 @@
 vendor/phpmailer/*
 .idea/scopes/scope_settings.xml
 Application/Entities/Generator/*
+vendor/Helpers/Cache/tmp/*
