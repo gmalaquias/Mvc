@@ -6,7 +6,7 @@
  * Time: 11:55
  */
 
-namespace Helpers\Annotation\Validators;
+namespace Helpers\Validators;
 
 
 use Helpers\ModelState;

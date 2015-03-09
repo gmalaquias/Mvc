@@ -6,7 +6,7 @@
  * Time: 11:44
  */
 
-namespace Helpers\Annotation\Validators;
+namespace Helpers\Validators;
 
 
 interface iValidator {

@@ -8,7 +8,7 @@
 namespace Helpers;
 
 use Helpers\Annotation\Annotation;
-use Helpers\Annotation\Validators\Attributes;
+use Helpers\Validators\Attributes;
 
 class ModelState
 {

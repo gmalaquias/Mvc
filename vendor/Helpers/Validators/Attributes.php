@@ -6,7 +6,7 @@
  * Time: 11:51
  */
 
-namespace Helpers\Annotation\Validators;
+namespace Helpers\Validators;
 
 
 class Attributes {
