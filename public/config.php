@@ -6,7 +6,6 @@ date_default_timezone_set('America/Sao_Paulo');
  * NAO REMOVER NENHUM CAMPO DESTE ARQUIVO, SE NECESSARIO APENAS FAZER ALTERAÇÕES
  */
 
-
 /**
  * DEFAULT para PATH
  */
@@ -36,7 +35,7 @@ define('PATH_PUBLIC', ROOT . 'public' . DS);
 define('PATH_LAYOUT', PATH_PUBLIC . 'layouts' . DS);
 
 define('HELPERS_PATH', VENDOR . "Helpers" . DS);
-define('VALIDATORS_PATH', HELPERS_PATH . "Annotation" . DS . "Validators" . DS);
+define('VALIDATORS_PATH', HELPERS_PATH . "Validators" . DS);
 
 define('PATH_CONTROLLER', APP . 'Controllers' . DS);
 define('PATH_VIEWS',      APP . 'Views' . DS);
@@ -49,7 +48,7 @@ define('PATH_AREA',       APP . 'Areas' . DS);
 define('NAMESPACE_CONTROLLER', 'Controllers');
 define('NAMESPACE_MODELS', 'Models');
 define('NAMESPACE_AREAS', 'Areas');
-define('NAMESPACE_VALIDATORS', 'Helpers\\Annotation\\Validators\\');
+define('NAMESPACE_VALIDATORS', 'Helpers\\Validators\\');
 define('NAMESPACE_ENTITIES', 'Entities\\');
 
 /**

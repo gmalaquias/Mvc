@@ -8,13 +8,10 @@
 
 namespace Controllers;
 
-
 use Mvc\Controller;
 
 class ErrosController extends Controller{
     public function Erro404(){
-
         $this->View();
-
     }
 } 

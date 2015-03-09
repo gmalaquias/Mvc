@@ -6,14 +6,11 @@
 </head>
 <body>
 
-<h1>Meu Arquivo basico de Layout</h1>
+<h1>Texto fixo definido no Layout Basic (public/layouts/basic.php)</h1>
+
 
 <?php echo \Mvc\Layout::getContent(); ?>
 
-<br>
-<br>
-<br>
-Footer do meu layout basic
 
 </body>
 </html>
