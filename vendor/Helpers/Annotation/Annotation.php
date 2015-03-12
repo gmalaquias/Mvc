@@ -7,7 +7,7 @@
  */
 
 namespace Helpers\Annotation;
-use Helpers\Annotation\Validators\Attributes;
+use Helpers\Validators\Attributes;
 use Helpers\Cache\Cache;
 use Helpers\ModelState;
 
